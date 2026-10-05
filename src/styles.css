@@ -1,1 +1,48 @@
-/* You can add global styles to this file, and also import other style files */
+/* Estilos globales */
+
+:root {
+  /* Colores (Figma) */
+  --lr-azul: #13347b;
+  --lr-azul-oscuro: #0d2559;
+  --lr-turquesa: #6dbac0;
+  --lr-gris-fondo: #f5f7fb;
+  --lr-texto: #1f2937;
+  --lr-texto-suave: #6b7280;
+
+  /* Fuentes */
+  --fuente-base: 'Poppins', system-ui, sans-serif;
+  --fuente-titulos: 'Outfit', 'Poppins', sans-serif;
+  --fuente-marca: 'Lilita One', 'Outfit', sans-serif;
+
+  /* Colores para Bootstrap */
+  --bs-primary: var(--lr-azul);
+  --bs-primary-rgb: 19, 52, 123;
+  --bs-body-font-family: var(--fuente-base);
+  --bs-body-color: var(--lr-texto);
+}
+
+body {
+  font-family: var(--fuente-base);
+  color: var(--lr-texto);
+  background-color: #fff;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--fuente-titulos);
+}
+
+/* Boton azul (Ver mas) */
+.btn-lr {
+  background-color: var(--lr-azul);
+  color: #fff;
+  font-family: var(--fuente-titulos);
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+}
+
+.btn-lr:hover,
+.btn-lr:focus-visible {
+  background-color: var(--lr-azul-oscuro);
+  color: #fff;
+}

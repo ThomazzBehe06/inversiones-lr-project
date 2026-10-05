@@ -1,0 +1,194 @@
+<!-- Hero -->
+<section class="hero">
+  <div class="container-xl hero-contenido">
+
+    <h1 class="hero-titulo">INVERSIONES LR</h1>
+    <p class="hero-descripcion">
+      Encuentra casas, cabañas y apartamentos para tu próxima estancia en Colombia.
+    </p>
+
+    <!-- Buscador -->
+    <form class="buscador" (ngSubmit)="buscar()" novalidate>
+
+      <div class="campo">
+        <label for="f-ciudad">Dónde</label>
+        <input id="f-ciudad" name="ciudad" list="lista-ciudades"
+               placeholder="Explorar destinos" autocomplete="off"
+               [(ngModel)]="filtros.ciudad">
+        <datalist id="lista-ciudades">
+          @for (ciudad of ciudades(); track ciudad) {
+            <option [value]="ciudad"></option>
+          }
+        </datalist>
+      </div>
+
+      <div class="campo">
+        <label for="f-tipo">Tipo</label>
+        <select id="f-tipo" name="tipo" [(ngModel)]="filtros.tipo"
+                [class.vacio]="!filtros.tipo">
+          <option [ngValue]="undefined">Ej: Casa</option>
+          @for (tipo of tipos(); track tipo) {
+            <option [ngValue]="tipo">{{ tipo }}</option>
+          }
+        </select>
+      </div>
+
+      <div class="campo campo-fechas">
+        <span class="etiqueta">Fechas</span>
+        <div class="fechas">
+          <input type="date" name="llegada" aria-label="Fecha de llegada"
+                 [min]="hoy" [(ngModel)]="filtros.llegada"
+                 [class.vacio]="!filtros.llegada">
+          <span class="separador">–</span>
+          <input type="date" name="salida" aria-label="Fecha de salida"
+                 [min]="filtros.llegada || hoy" [(ngModel)]="filtros.salida"
+                 [class.vacio]="!filtros.salida">
+        </div>
+      </div>
+
+      <div class="campo campo-corto">
+        <label for="f-huespedes">Quién</label>
+        <input id="f-huespedes" name="huespedes" type="number" min="1" max="20"
+               placeholder="¿Cuántos?" [(ngModel)]="filtros.huespedes">
+      </div>
+
+      <div class="campo">
+        <label for="f-precio">Precios</label>
+        <select id="f-precio" name="precioMax" [(ngModel)]="filtros.precioMax"
+                [class.vacio]="!filtros.precioMax">
+          <option [ngValue]="undefined">Añadir rango</option>
+          @for (precio of opcionesPrecio; track precio) {
+            <option [ngValue]="precio">Hasta {{ precio | currency: 'COP' : 'symbol-narrow' : '1.0-0' }}</option>
+          }
+        </select>
+      </div>
+
+      <div class="campo">
+        <label for="f-calificacion">Calificaciones</label>
+        <select id="f-calificacion" name="calificacionMin" [(ngModel)]="filtros.calificacionMin"
+                [class.vacio]="!filtros.calificacionMin">
+          <option [ngValue]="undefined">Explorar rating</option>
+          @for (valor of opcionesCalificacion; track valor) {
+            <option [ngValue]="valor">★ {{ valor }} o más</option>
+          }
+        </select>
+      </div>
+
+      <button type="submit" class="btn-buscar" [disabled]="errorFechas" aria-label="Buscar alojamientos">
+        <i class="bi bi-search"></i>
+        <span class="d-lg-none ms-2">Buscar</span>
+      </button>
+    </form>
+
+    <!-- Limpiar y errores -->
+    <div class="acciones-buscador">
+      <button type="button" class="btn-limpiar" (click)="limpiarFiltros()">
+        Limpiar filtros
+      </button>
+
+      @if (errorFechas) {
+        <span class="error-fechas" role="alert">
+          <i class="bi bi-exclamation-circle me-1"></i>{{ errorFechas }}
+        </span>
+      }
+    </div>
+
+  </div>
+</section>
+
+<!-- Categorias -->
+<section class="container-xl seccion">
+  <h2 class="titulo-seccion">Categorías de hospedaje</h2>
+
+  <div class="row g-3">
+    @for (categoria of categorias; track categoria.nombre) {
+      <div class="col-12 col-md-4">
+        <a class="tarjeta-imagen"
+           routerLink="/alojamientos" [queryParams]="categoria.filtro"
+           [style.background-image]="fondo(categoria.imagen)">
+          <span>{{ categoria.nombre }}</span>
+        </a>
+      </div>
+    }
+  </div>
+</section>
+
+<!-- Lugares populares -->
+<section class="container-xl seccion">
+  <h2 class="titulo-seccion">Lugares populares</h2>
+
+  <div class="row g-3">
+    @for (lugar of lugares; track lugar.nombre) {
+      <div class="col-6 col-lg-4">
+        <a class="tarjeta-imagen tarjeta-lugar"
+           routerLink="/alojamientos" [queryParams]="lugar.filtro"
+           [style.background-image]="fondo(lugar.imagen)">
+          <span>{{ lugar.nombre }}</span>
+        </a>
+      </div>
+    }
+  </div>
+</section>
+
+<!-- Alojamientos destacados -->
+<section class="container-xl seccion pb-5">
+  <h2 class="titulo-seccion">Alojamientos disponibles</h2>
+
+  @if (errorCarga()) {
+    <!-- Error -->
+    <div class="estado estado-error">
+      <i class="bi bi-wifi-off"></i>
+      <p class="mb-0">No pudimos cargar los alojamientos. Intenta recargar la página.</p>
+    </div>
+  } @else if (destacados() === undefined) {
+    <!-- Cargando -->
+    <div class="estado">
+      <div class="spinner-border text-primary" role="status"></div>
+      <p class="mt-2 mb-0">Cargando alojamientos...</p>
+    </div>
+  } @else {
+    <div class="row g-4">
+      @for (alojamiento of destacados(); track alojamiento.id) {
+        <!-- Tarjeta -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <article class="tarjeta-alojamiento">
+            <div class="foto">
+              <img [src]="alojamiento.imagenPrincipal" [alt]="alojamiento.nombre"
+                   loading="lazy" (error)="imagenNoDisponible($event)">
+            </div>
+
+            <div class="info">
+              <h3>{{ alojamiento.nombre }}</h3>
+              <p class="datos">
+                {{ alojamiento.ciudad }} · {{ alojamiento.tipo }} · Hasta {{ alojamiento.capacidad }} huéspedes
+              </p>
+              <p class="precio">
+                <span class="estrella"><i class="bi bi-star-fill"></i> {{ alojamiento.calificacion }}</span>
+                <strong>{{ alojamiento.precioNoche | currency: 'COP' : 'symbol-narrow' : '1.0-0' }}</strong> / noche
+              </p>
+              <p class="servicios">{{ alojamiento.servicios.join(' · ') }}</p>
+            </div>
+
+            <a class="btn btn-lr ver-mas" [routerLink]="['/alojamientos', alojamiento.id]">
+              Ver más
+            </a>
+          </article>
+        </div>
+      } @empty {
+        <!-- Sin resultados -->
+        <div class="col-12">
+          <div class="estado">
+            <i class="bi bi-house-slash"></i>
+            <p class="mb-0">Por ahora no hay alojamientos destacados.</p>
+          </div>
+        </div>
+      }
+    </div>
+
+    <div class="text-center mt-4">
+      <a routerLink="/alojamientos" class="ver-todos">
+        Ver todos los alojamientos <i class="bi bi-arrow-right"></i>
+      </a>
+    </div>
+  }
+</section>
