@@ -5,24 +5,24 @@
       Encuentra casas, cabañas y apartamentos para tu próxima estancia en Colombia.
     </p>
 
-    <form class="buscador" (ngSubmit)="buscar()" (keydown.escape)="cerrarMenu()">
+    <form class="buscador" (ngSubmit)="verResultados()" (keydown.escape)="cerrarMenu()">
       @if (menu) {
         <div class="fondo-menu" (click)="cerrarMenu()"></div>
       }
       <div class="campo" [class.abierto]="menu === 'ciudad'">
         <span class="etiqueta">Dónde</span>
         <button type="button" class="disparador" (click)="abrirMenu('ciudad')">
-          <span [class.placeholder]="!ciudad">{{ ciudad || 'Todas' }}</span>
+          <span [class.placeholder]="!filtros.ciudad">{{ filtros.ciudad || 'Todas' }}</span>
           <i class="bi bi-chevron-down"></i>
         </button>
         @if (menu === 'ciudad') {
           <div class="menu">
-            <button type="button" class="opcion" [class.activa]="!ciudad"
-                    (click)="ciudad = ''; cerrarMenu()">Todas
+            <button type="button" class="opcion" [class.activa]="!filtros.ciudad"
+                    (click)="filtros.ciudad = ''; buscar(); cerrarMenu()">Todas
             </button>
             @for (c of ciudades; track c) {
-              <button type="button" class="opcion" [class.activa]="ciudad === c"
-                      (click)="ciudad = c; cerrarMenu()">{{ c }}
+              <button type="button" class="opcion" [class.activa]="filtros.ciudad === c"
+                      (click)="filtros.ciudad = c; buscar(); cerrarMenu()">{{ c }}
               </button>
             }
           </div>
@@ -32,17 +32,17 @@
       <div class="campo" [class.abierto]="menu === 'tipo'">
         <span class="etiqueta">Tipo</span>
         <button type="button" class="disparador" (click)="abrirMenu('tipo')">
-          <span [class.placeholder]="!tipo">{{ tipo || 'Todos' }}</span>
+          <span [class.placeholder]="!filtros.tipo">{{ filtros.tipo || 'Todos' }}</span>
           <i class="bi bi-chevron-down"></i>
         </button>
         @if (menu === 'tipo') {
           <div class="menu">
-            <button type="button" class="opcion" [class.activa]="!tipo"
-                    (click)="tipo = ''; cerrarMenu()">Todos
+            <button type="button" class="opcion" [class.activa]="!filtros.tipo"
+                    (click)="filtros.tipo = ''; buscar(); cerrarMenu()">Todos
             </button>
             @for (t of tipos; track t) {
-              <button type="button" class="opcion" [class.activa]="tipo === t"
-                      (click)="tipo = t; cerrarMenu()">{{ t }}
+              <button type="button" class="opcion" [class.activa]="filtros.tipo === t"
+                      (click)="filtros.tipo = t; buscar(); cerrarMenu()">{{ t }}
               </button>
             }
           </div>
@@ -52,24 +52,24 @@
       <div class="campo campo-corto">
         <label for="f-huespedes">Quién</label>
         <input id="f-huespedes" name="huespedes" type="number" min="1" placeholder="¿Cuántos?"
-               [(ngModel)]="huespedes">
+               [(ngModel)]="filtros.huespedes" (ngModelChange)="buscar()">
       </div>
 
       <div class="campo" [class.abierto]="menu === 'precio'">
         <span class="etiqueta">Precios</span>
         <button type="button" class="disparador" (click)="abrirMenu('precio')">
-          <span [class.placeholder]="!precioMin && !precioMax">{{ textoPrecio() }}</span>
+          <span [class.placeholder]="!filtros.precioMin && !filtros.precioMax">{{ textoPrecio() }}</span>
           <i class="bi bi-chevron-down"></i>
         </button>
         @if (menu === 'precio') {
           <div class="menu menu-precio">
             <label>Mínimo
               <input type="number" name="precioMin" min="0" step="10000" placeholder="$ 0"
-                     [(ngModel)]="precioMin">
+                     [(ngModel)]="filtros.precioMin" (ngModelChange)="buscar()">
             </label>
             <label>Máximo
               <input type="number" name="precioMax" min="0" step="10000" placeholder="Sin límite"
-                     [(ngModel)]="precioMax">
+                     [(ngModel)]="filtros.precioMax" (ngModelChange)="buscar()">
             </label>
             <button type="button" class="btn btn-lr aplicar" (click)="cerrarMenu()">Listo</button>
           </div>
@@ -79,19 +79,19 @@
       <div class="campo" [class.abierto]="menu === 'rating'">
         <span class="etiqueta">Calificaciones</span>
         <button type="button" class="disparador" (click)="abrirMenu('rating')">
-          <span [class.placeholder]="!calificacionMin">
-            {{ calificacionMin ? '★ ' + calificacionMin + ' o más' : 'Explorar rating' }}
+          <span [class.placeholder]="!filtros.calificacionMin">
+            {{ filtros.calificacionMin ? '★ ' + filtros.calificacionMin + ' o más' : 'Explorar rating' }}
           </span>
           <i class="bi bi-chevron-down"></i>
         </button>
         @if (menu === 'rating') {
           <div class="menu">
-            <button type="button" class="opcion" [class.activa]="!calificacionMin"
-                    (click)="calificacionMin = null; cerrarMenu()">Cualquiera
+            <button type="button" class="opcion" [class.activa]="!filtros.calificacionMin"
+                    (click)="filtros.calificacionMin = null; buscar(); cerrarMenu()">Cualquiera
             </button>
             @for (valor of opcionesCalificacion; track valor) {
-              <button type="button" class="opcion" [class.activa]="calificacionMin === valor"
-                      (click)="calificacionMin = valor; cerrarMenu()">★ {{ valor }} o más
+              <button type="button" class="opcion" [class.activa]="filtros.calificacionMin === valor"
+                      (click)="filtros.calificacionMin = valor; buscar(); cerrarMenu()">★ {{ valor }} o más
               </button>
             }
           </div>
@@ -139,8 +139,8 @@
   </div>
 </section>
 
-<section class="container-xl seccion">
-  <h2 class="titulo-seccion">Alojamientos destacados</h2>
+<section class="container-xl seccion pb-5" id="resultados">
+  <h2 class="titulo-seccion">Alojamientos disponibles</h2>
   @if (error) {
     <div class="estado estado-error">
       <i class="bi bi-wifi-off"></i>
@@ -152,14 +152,14 @@
       <p class="mt-2 mb-0">Cargando alojamientos...</p>
     </div>
   } @else {
+    <p class="text-muted">{{ resultados.length }} alojamientos encontrados</p>
     <div class="row g-4">
-      @for (alojamiento of destacados; track alojamiento.id) {
+      @for (alojamiento of paginados; track alojamiento.id) {
         <div class="col-4">
           <article class="tarjeta-alojamiento">
             <div class="foto">
               <img [src]="alojamiento.imagenPrincipal" [alt]="alojamiento.nombre">
             </div>
-
             <div class="info">
               <h3>{{ alojamiento.nombre }}</h3>
               <p class="datos">
@@ -171,59 +171,33 @@
               </p>
               <p class="servicios">{{ textoServicios(alojamiento) }}</p>
             </div>
-
             <a class="btn btn-lr ver-mas" [routerLink]="['/alojamientos', alojamiento.id]">Ver más</a>
           </article>
         </div>
-      }
-    </div>
-
-    <div class="text-center mt-4">
-      <a class="ver-todos" routerLink="/alojamientos">Ver todos los alojamientos</a>
-    </div>
-  }
-</section>
-
-@if (resenas.length > 0) {
-  <section class="container-xl seccion">
-    <h2 class="titulo-seccion">Reseñas</h2>
-    <div class="row g-4">
-      @for (resena of resenas; track resena.id) {
-        <div class="col-3">
-          <article class="resena">
-            <img class="resena-foto" [src]="resena.foto" [alt]="resena.usuario">
-            <p class="resena-estrellas">{{ estrellas(resena.calificacion) }}</p>
-            <p class="resena-comentario">“{{ resena.comentario }}”</p>
-            <p class="resena-nombre">{{ resena.usuario }}</p>
-            <p class="resena-alojamiento">{{ nombreAlojamiento(resena.alojamientoId) }}</p>
-          </article>
+      } @empty {
+        <div class="col-12">
+          <div class="estado">
+            <i class="bi bi-house-slash"></i>
+            <p class="mb-2">No encontramos alojamientos con esos filtros.</p>
+            <button type="button" class="btn btn-lr" (click)="limpiarFiltros()">Limpiar filtros</button>
+          </div>
         </div>
       }
     </div>
-  </section>
-}
-
-<section class="container-xl seccion pb-5">
-  <h2 class="titulo-seccion">¿Quiénes somos?</h2>
-  <div class="nosotros-collage">
-    <div class="nosotros-item">
-      <img src="assets/images/nosotros1.jpg" alt="Equipo de Inversiones LR">
-    </div>
-    <div class="nosotros-item">
-      <img src="assets/images/nosotros2.jpg" alt="Reunión de trabajo">
-    </div>
-    <div class="nosotros-item">
-      <img src="assets/images/nosotros3.jpg" alt="Atención a huéspedes">
-    </div>
-    <div class="nosotros-item">
-      <img src="assets/images/nosotros4.jpg" alt="Nuestro equipo">
-    </div>
-  </div>
-
-  <p class="nosotros-texto">
-    En Inversiones LR conectamos a viajeros con alojamientos seleccionados en Colombia, desde lofts
-    en Bogotá hasta apartamentos frente al mar en Cartagena y San Andrés. Elegimos cada propiedad
-    pensando en la comodidad, la calidad y la confianza, para que reservar tu próxima estancia sea
-    simple y seguro.
-  </p>
+    @if (totalPaginas > 1) {
+      <nav class="paginado">
+        <button type="button" aria-label="Página anterior"
+                [disabled]="paginaActual === 1" (click)="cambiarPagina(paginaActual - 1)">&lt;
+        </button>
+        @for (pagina of paginas; track pagina) {
+          <button type="button" [class.activa]="pagina === paginaActual"
+                  (click)="cambiarPagina(pagina)">{{ pagina }}
+          </button>
+        }
+        <button type="button" aria-label="Página siguiente"
+                [disabled]="paginaActual === totalPaginas" (click)="cambiarPagina(paginaActual + 1)">&gt;
+        </button>
+      </nav>
+    }
+  }
 </section>

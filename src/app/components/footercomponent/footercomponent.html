@@ -1,1 +1,43 @@
-<p>footercomponent works!</p>
+<footer class="footer">
+  <div class="container-xl">
+
+    <div class="row g-4">
+
+      <div class="col-6 col-md-3">
+        <ul>
+          <li><a routerLink="/inicio">Inicio</a></li>
+          <li><a routerLink="/alojamientos">Alojamientos</a></li>
+          <li><a routerLink="/reservas">Mis reservas</a></li>
+        </ul>
+      </div>
+
+      <div class="col-6 col-md-3">
+        <ul>
+          <li><a routerLink="/alojamientos" [queryParams]="{ categoria: 'Urbano' }">Urbano</a></li>
+          <li><a routerLink="/alojamientos" [queryParams]="{ categoria: 'Playas' }">Playas</a></li>
+          <li><a routerLink="/alojamientos" [queryParams]="{ categoria: 'Rural' }">Rural</a></li>
+        </ul>
+      </div>
+
+      <div class="col-6 col-md-3">
+        <ul>
+          <li><a routerLink="/alojamientos" [queryParams]="{ ciudad: 'Bogotá' }">Bogotá</a></li>
+          <li><a routerLink="/alojamientos" [queryParams]="{ ciudad: 'Cartagena' }">Cartagena</a></li>
+          <li><a routerLink="/alojamientos" [queryParams]="{ ciudad: 'San Andrés' }">San Andrés</a></li>
+        </ul>
+      </div>
+
+      <div class="col-6 col-md-3">
+        <ul>
+          <li>contacto&#64;inversioneslr.com</li>
+          <li>+57 300 000 0000</li>
+          <li>Bogotá, Colombia</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="text-center mt-4">
+      <img src="assets/images/logo-lr-claro.png" alt="Inversiones LR" class="footer-logo">
+    </div>
+  </div>
+</footer>

@@ -5,61 +5,28 @@
       <img src="assets/images/logo-lr-claro.png" alt="Inversiones LR - Inicio">
     </a>
 
-    <!-- Boton Responsive -->
-    <button
-      class="navbar-toggler"
-      type="button"
-      (click)="alternarMenu()"
-      [attr.aria-expanded]="menuAbierto()"
-      aria-controls="navbarContenido"
-      aria-label="Abrir navegación"
-    >
-      <i class="bi" [class.bi-list]="!menuAbierto()" [class.bi-x-lg]="menuAbierto()"></i>
+    <button class="navbar-toggler" type="button" (click)="alternarMenu()">
+      <i class="bi bi-list"></i>
     </button>
 
-    <!-- Enlaces -->
-    <div class="collapse navbar-collapse" id="navbarContenido" [class.show]="menuAbierto()">
+    <div class="collapse navbar-collapse" [class.show]="menuAbierto">
 
       <ul class="navbar-nav mx-auto gap-lg-5">
         <li class="nav-item">
-          <a class="nav-link"
-             routerLink="/inicio"
-             routerLinkActive="active"
-             (click)="cerrarMenu()">
-            Inicio
-          </a>
+          <a class="nav-link" routerLink="/inicio" routerLinkActive="active" (click)="cerrarMenu()">Inicio</a>
         </li>
-
         <li class="nav-item">
-          <a class="nav-link"
-             routerLink="/alojamientos"
-             routerLinkActive="active"
-             (click)="cerrarMenu()">
-            Alojamientos
-          </a>
+          <a class="nav-link" routerLink="/alojamientos" routerLinkActive="active" (click)="cerrarMenu()">Alojamientos</a>
         </li>
-
         <li class="nav-item">
-          <a class="nav-link"
-             routerLink="/reservas"
-             routerLinkActive="active"
-             (click)="cerrarMenu()">
-            Reservas
-          </a>
+          <a class="nav-link" routerLink="/reservas" routerLinkActive="active" (click)="cerrarMenu()">Reservas</a>
         </li>
       </ul>
 
-      <!-- Buscador -->
-      <div class="buscador" role="search">
+      <div class="buscador">
         <i class="bi bi-search"></i>
-        <input
-          type="search"
-          class="form-control"
-          placeholder="Buscar"
-          aria-label="Buscar alojamientos"
-          #inputBusqueda
-          (keyup.enter)="buscar(inputBusqueda.value)"
-        >
+        <input type="search" class="form-control" placeholder="Buscar" #texto
+               (keyup.enter)="buscar(texto.value)">
       </div>
 
     </div>

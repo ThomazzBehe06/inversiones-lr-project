@@ -8,7 +8,7 @@
       "ubicacion": "Chapinero, Bogotá",
       "tipo": "Apartamento",
       "categoria": "Urbano",
-      "destacado": false,
+      "destacado": true,
       "capacidad": 2,
       "habitaciones": 1,
       "camas": 1,
@@ -31,7 +31,9 @@
       "reglas": [
         "No fumar",
         "No se permiten fiestas"
-      ]
+      ],
+      "latitud": 4.6486,
+      "longitud": -74.0628
     },
     {
       "id": 2,
@@ -65,7 +67,9 @@
       "reglas": [
         "No fumar",
         "No mascotas"
-      ]
+      ],
+      "latitud": 10.4014,
+      "longitud": -75.556
     },
     {
       "id": 3,
@@ -98,7 +102,9 @@
       "reglas": [
         "No fumar",
         "Silencio después de las 10 PM"
-      ]
+      ],
+      "latitud": 6.2342,
+      "longitud": -75.1593
     },
     {
       "id": 4,
@@ -131,7 +137,9 @@
       "reglas": [
         "No fiestas",
         "Máximo 8 huéspedes"
-      ]
+      ],
+      "latitud": 5.6359,
+      "longitud": -73.5247
     },
     {
       "id": 5,
@@ -141,7 +149,7 @@
       "ubicacion": "El Poblado, Medellín",
       "tipo": "Apartamento",
       "categoria": "Urbano",
-      "destacado": false,
+      "destacado": true,
       "capacidad": 3,
       "habitaciones": 1,
       "camas": 2,
@@ -162,7 +170,9 @@
       ],
       "reglas": [
         "No fumar"
-      ]
+      ],
+      "latitud": 6.2086,
+      "longitud": -75.5659
     },
     {
       "id": 6,
@@ -192,6 +202,874 @@
       ],
       "reglas": [
         "No fiestas"
+      ],
+      "latitud": 4.49,
+      "longitud": -75.74
+    },
+    {
+      "id": 7,
+      "nombre": "Apartamento con vista en Usaquén",
+      "descripcion": "Apartamento luminoso con balcón, a pocas cuadras del mercado de las pulgas y restaurantes de Usaquén.",
+      "ciudad": "Bogotá",
+      "ubicacion": "Usaquén, Bogotá",
+      "tipo": "Apartamento",
+      "categoria": "Urbano",
+      "destacado": false,
+      "capacidad": 4,
+      "habitaciones": 2,
+      "camas": 2,
+      "banos": 2,
+      "precioNoche": 260000,
+      "tarifaLimpieza": 55000,
+      "calificacion": 4.7,
+      "activo": true,
+      "latitud": 4.701,
+      "longitud": -74.0305,
+      "imagenPrincipal": "assets/images/apartamento-con-vista-en-usaquen.jpg",
+      "imagenes": [
+        "assets/images/apartamento-con-vista-en-usaquen.jpg",
+        "assets/images/apartamento-con-vista-en-usaquen-2.jpg"
+      ],
+      "servicios": [
+        "Wi-Fi",
+        "Cocina",
+        "Televisión",
+        "Parqueadero"
+      ],
+      "reglas": [
+        "No fumar",
+        "No se permiten fiestas"
+      ]
+    },
+    {
+      "id": 8,
+      "nombre": "Estudio en Zona T",
+      "descripcion": "Estudio moderno ideal para viajes de trabajo, cerca de zona rosa y centros comerciales.",
+      "ciudad": "Bogotá",
+      "ubicacion": "Zona T, Bogotá",
+      "tipo": "Apartamento",
+      "categoria": "Urbano",
+      "destacado": false,
+      "capacidad": 2,
+      "habitaciones": 1,
+      "camas": 1,
+      "banos": 1,
+      "precioNoche": 210000,
+      "tarifaLimpieza": 45000,
+      "calificacion": 4.6,
+      "activo": true,
+      "latitud": 4.6672,
+      "longitud": -74.054,
+      "imagenPrincipal": "assets/images/estudio-en-zona-t.jpg",
+      "imagenes": [
+        "assets/images/estudio-en-zona-t.jpg",
+        "assets/images/estudio-en-zona-t-2.jpg"
+      ],
+      "servicios": [
+        "Wi-Fi",
+        "Cocina",
+        "Gimnasio",
+        "Lavadora"
+      ],
+      "reglas": [
+        "No fumar",
+        "Silencio después de las 10 PM"
+      ]
+    },
+    {
+      "id": 9,
+      "nombre": "Casa familiar en La Candelaria",
+      "descripcion": "Casa tradicional restaurada en el centro histórico de Bogotá, cerca de museos y plazas.",
+      "ciudad": "Bogotá",
+      "ubicacion": "La Candelaria, Bogotá",
+      "tipo": "Casa",
+      "categoria": "Urbano",
+      "destacado": false,
+      "capacidad": 6,
+      "habitaciones": 3,
+      "camas": 4,
+      "banos": 2,
+      "precioNoche": 330000,
+      "tarifaLimpieza": 65000,
+      "calificacion": 4.4,
+      "activo": true,
+      "latitud": 4.5981,
+      "longitud": -74.076,
+      "imagenPrincipal": "assets/images/casa-familiar-en-la-candelaria.jpg",
+      "imagenes": [
+        "assets/images/casa-familiar-en-la-candelaria.jpg",
+        "assets/images/casa-familiar-en-la-candelaria-2.jpg"
+      ],
+      "servicios": [
+        "Wi-Fi",
+        "Cocina",
+        "Chimenea"
+      ],
+      "reglas": [
+        "No fumar",
+        "No se permiten fiestas"
+      ]
+    },
+    {
+      "id": 10,
+      "nombre": "Penthouse en El Poblado",
+      "descripcion": "Penthouse con terraza y jacuzzi en la zona más exclusiva de Medellín.",
+      "ciudad": "Medellín",
+      "ubicacion": "El Poblado, Medellín",
+      "tipo": "Apartamento",
+      "categoria": "Urbano",
+      "destacado": false,
+      "capacidad": 4,
+      "habitaciones": 2,
+      "camas": 2,
+      "banos": 2,
+      "precioNoche": 480000,
+      "tarifaLimpieza": 80000,
+      "calificacion": 4.9,
+      "activo": true,
+      "latitud": 6.21,
+      "longitud": -75.57,
+      "imagenPrincipal": "assets/images/penthouse-en-el-poblado.jpg",
+      "imagenes": [
+        "assets/images/penthouse-en-el-poblado.jpg",
+        "assets/images/penthouse-en-el-poblado-2.jpg"
+      ],
+      "servicios": [
+        "Wi-Fi",
+        "Jacuzzi",
+        "Aire acondicionado",
+        "Gimnasio",
+        "Parqueadero"
+      ],
+      "reglas": [
+        "No fumar",
+        "No se permiten fiestas"
+      ]
+    },
+    {
+      "id": 11,
+      "nombre": "Loft artístico en Laureles",
+      "descripcion": "Loft rodeado de cafés y parques en uno de los barrios más caminables de Medellín.",
+      "ciudad": "Medellín",
+      "ubicacion": "Laureles, Medellín",
+      "tipo": "Apartamento",
+      "categoria": "Urbano",
+      "destacado": false,
+      "capacidad": 2,
+      "habitaciones": 1,
+      "camas": 1,
+      "banos": 1,
+      "precioNoche": 190000,
+      "tarifaLimpieza": 40000,
+      "calificacion": 4.5,
+      "activo": true,
+      "latitud": 6.2442,
+      "longitud": -75.59,
+      "imagenPrincipal": "assets/images/loft-artistico-en-laureles.jpg",
+      "imagenes": [
+        "assets/images/loft-artistico-en-laureles.jpg",
+        "assets/images/loft-artistico-en-laureles-2.jpg"
+      ],
+      "servicios": [
+        "Wi-Fi",
+        "Cocina",
+        "Televisión"
+      ],
+      "reglas": [
+        "No fumar"
+      ]
+    },
+    {
+      "id": 12,
+      "nombre": "Apartamento en Granada",
+      "descripcion": "Apartamento acogedor cerca del Parque del Perro y la vida nocturna de Cali.",
+      "ciudad": "Cali",
+      "ubicacion": "Granada, Cali",
+      "tipo": "Apartamento",
+      "categoria": "Urbano",
+      "destacado": false,
+      "capacidad": 3,
+      "habitaciones": 1,
+      "camas": 2,
+      "banos": 1,
+      "precioNoche": 170000,
+      "tarifaLimpieza": 40000,
+      "calificacion": 4.3,
+      "activo": true,
+      "latitud": 3.459,
+      "longitud": -76.538,
+      "imagenPrincipal": "assets/images/apartamento-en-granada.jpeg",
+      "imagenes": [
+        "assets/images/apartamento-en-granada.jpeg",
+        "assets/images/apartamento-en-granada-2.jpeg"
+      ],
+      "servicios": [
+        "Wi-Fi",
+        "Cocina",
+        "Aire acondicionado"
+      ],
+      "reglas": [
+        "No fumar",
+        "Silencio después de las 10 PM"
+      ]
+    },
+    {
+      "id": 13,
+      "nombre": "Casa con piscina en Ciudad Jardín",
+      "descripcion": "Casa amplia con piscina privada para familias o grupos, en zona residencial segura.",
+      "ciudad": "Cali",
+      "ubicacion": "Ciudad Jardín, Cali",
+      "tipo": "Casa",
+      "categoria": "Urbano",
+      "destacado": false,
+      "capacidad": 8,
+      "habitaciones": 4,
+      "camas": 5,
+      "banos": 3,
+      "precioNoche": 430000,
+      "tarifaLimpieza": 85000,
+      "calificacion": 4.6,
+      "activo": true,
+      "latitud": 3.379,
+      "longitud": -76.542,
+      "imagenPrincipal": "assets/images/casa-con-piscina-en-ciudad-jardin.jpeg",
+      "imagenes": [
+        "assets/images/casa-con-piscina-en-ciudad-jardin.jpeg",
+        "assets/images/casa-con-piscina-en-ciudad-jardin-2.jpeg"
+      ],
+      "servicios": [
+        "Wi-Fi",
+        "Piscina",
+        "Aire acondicionado",
+        "Cocina",
+        "Parqueadero"
+      ],
+      "reglas": [
+        "No fumar",
+        "No fiestas"
+      ]
+    },
+    {
+      "id": 14,
+      "nombre": "Suite en el Centro Amurallado",
+      "descripcion": "Suite en una casa colonial dentro de la ciudad amurallada, a pasos de la Plaza de Santo Domingo.",
+      "ciudad": "Cartagena",
+      "ubicacion": "Centro Histórico, Cartagena",
+      "tipo": "Apartamento",
+      "categoria": "Playas",
+      "destacado": false,
+      "capacidad": 2,
+      "habitaciones": 1,
+      "camas": 1,
+      "banos": 1,
+      "precioNoche": 350000,
+      "tarifaLimpieza": 55000,
+      "calificacion": 4.8,
+      "activo": true,
+      "latitud": 10.4236,
+      "longitud": -75.551,
+      "imagenPrincipal": "assets/images/suite-en-el-centro-amurallado.jpg",
+      "imagenes": [
+        "assets/images/suite-en-el-centro-amurallado.jpg",
+        "assets/images/suite-en-el-centro-amurallado-2.jpg"
+      ],
+      "servicios": [
+        "Wi-Fi",
+        "Aire acondicionado",
+        "Cocina"
+      ],
+      "reglas": [
+        "No fumar",
+        "No mascotas"
+      ]
+    },
+    {
+      "id": 15,
+      "nombre": "Casa colonial con patio en Getsemaní",
+      "descripcion": "Casa con patio interior y terraza en el barrio más animado de Cartagena.",
+      "ciudad": "Cartagena",
+      "ubicacion": "Getsemaní, Cartagena",
+      "tipo": "Casa",
+      "categoria": "Playas",
+      "destacado": false,
+      "capacidad": 7,
+      "habitaciones": 3,
+      "camas": 4,
+      "banos": 3,
+      "precioNoche": 560000,
+      "tarifaLimpieza": 90000,
+      "calificacion": 4.7,
+      "activo": true,
+      "latitud": 10.4222,
+      "longitud": -75.547,
+      "imagenPrincipal": "assets/images/casa-colonial-con-patio-en-getsemani.jpg",
+      "imagenes": [
+        "assets/images/casa-colonial-con-patio-en-getsemani.jpg",
+        "assets/images/casa-colonial-con-patio-en-getsemani-2.jpg"
+      ],
+      "servicios": [
+        "Wi-Fi",
+        "Aire acondicionado",
+        "Piscina",
+        "Cocina"
+      ],
+      "reglas": [
+        "No fumar",
+        "No se permiten fiestas"
+      ]
+    },
+    {
+      "id": 16,
+      "nombre": "Apartamento en Castillogrande",
+      "descripcion": "Apartamento familiar con acceso a zonas comunes y piscina, cerca de la playa.",
+      "ciudad": "Cartagena",
+      "ubicacion": "Castillogrande, Cartagena",
+      "tipo": "Apartamento",
+      "categoria": "Playas",
+      "destacado": false,
+      "capacidad": 4,
+      "habitaciones": 2,
+      "camas": 3,
+      "banos": 2,
+      "precioNoche": 310000,
+      "tarifaLimpieza": 60000,
+      "calificacion": 4.5,
+      "activo": true,
+      "latitud": 10.387,
+      "longitud": -75.554,
+      "imagenPrincipal": "assets/images/apartamento-en-castillogrande.jpg",
+      "imagenes": [
+        "assets/images/apartamento-en-castillogrande.jpg",
+        "assets/images/apartamento-en-castillogrande-2.jpg"
+      ],
+      "servicios": [
+        "Wi-Fi",
+        "Piscina",
+        "Aire acondicionado",
+        "Parqueadero"
+      ],
+      "reglas": [
+        "No fumar",
+        "No mascotas"
+      ]
+    },
+    {
+      "id": 17,
+      "nombre": "Apartamento en El Rodadero",
+      "descripcion": "Apartamento a una cuadra de la playa, con balcón y vista parcial al mar.",
+      "ciudad": "Santa Marta",
+      "ubicacion": "El Rodadero, Santa Marta",
+      "tipo": "Apartamento",
+      "categoria": "Playas",
+      "destacado": false,
+      "capacidad": 5,
+      "habitaciones": 2,
+      "camas": 3,
+      "banos": 2,
+      "precioNoche": 290000,
+      "tarifaLimpieza": 55000,
+      "calificacion": 4.6,
+      "activo": true,
+      "latitud": 11.2,
+      "longitud": -74.229,
+      "imagenPrincipal": "assets/images/apartamento-en-el-rodadero.jpg",
+      "imagenes": [
+        "assets/images/apartamento-en-el-rodadero.jpg",
+        "assets/images/apartamento-en-el-rodadero-2.jpg"
+      ],
+      "servicios": [
+        "Wi-Fi",
+        "Piscina",
+        "Aire acondicionado",
+        "Parqueadero"
+      ],
+      "reglas": [
+        "No fumar",
+        "No fiestas"
+      ]
+    },
+    {
+      "id": 18,
+      "nombre": "Cabaña ecológica en Taganga",
+      "descripcion": "Cabaña sencilla y fresca cerca de la bahía, ideal para buceo y senderismo.",
+      "ciudad": "Santa Marta",
+      "ubicacion": "Taganga, Santa Marta",
+      "tipo": "Cabaña",
+      "categoria": "Playas",
+      "destacado": false,
+      "capacidad": 4,
+      "habitaciones": 2,
+      "camas": 3,
+      "banos": 1,
+      "precioNoche": 200000,
+      "tarifaLimpieza": 40000,
+      "calificacion": 4.2,
+      "activo": true,
+      "latitud": 11.267,
+      "longitud": -74.192,
+      "imagenPrincipal": "assets/images/cabana-ecologica-en-taganga.jpg",
+      "imagenes": [
+        "assets/images/cabana-ecologica-en-taganga.jpg",
+        "assets/images/cabana-ecologica-en-taganga-2.jpg"
+      ],
+      "servicios": [
+        "Wi-Fi",
+        "Cocina",
+        "Ventilador"
+      ],
+      "reglas": [
+        "No fumar",
+        "Silencio después de las 10 PM"
+      ]
+    },
+    {
+      "id": 19,
+      "nombre": "Casa frente al mar en Santa Marta",
+      "descripcion": "Casa con acceso directo a la playa, terraza y hamacas para descansar.",
+      "ciudad": "Santa Marta",
+      "ubicacion": "Pozos Colorados, Santa Marta",
+      "tipo": "Casa",
+      "categoria": "Playas",
+      "destacado": false,
+      "capacidad": 9,
+      "habitaciones": 4,
+      "camas": 6,
+      "banos": 3,
+      "precioNoche": 610000,
+      "tarifaLimpieza": 100000,
+      "calificacion": 4.8,
+      "activo": true,
+      "latitud": 11.18,
+      "longitud": -74.23,
+      "imagenPrincipal": "assets/images/casa-frente-al-mar-en-santa-marta.jpg",
+      "imagenes": [
+        "assets/images/casa-frente-al-mar-en-santa-marta.jpg",
+        "assets/images/casa-frente-al-mar-en-santa-marta-2.jpg"
+      ],
+      "servicios": [
+        "Wi-Fi",
+        "Piscina",
+        "Aire acondicionado",
+        "BBQ",
+        "Parqueadero"
+      ],
+      "reglas": [
+        "No fumar",
+        "No se permiten fiestas"
+      ]
+    },
+    {
+      "id": 20,
+      "nombre": "Casa de playa en San Andrés",
+      "descripcion": "Casa a pasos del mar de los siete colores, con terraza y kayaks incluidos.",
+      "ciudad": "San Andrés",
+      "ubicacion": "San Luis, San Andrés",
+      "tipo": "Casa",
+      "categoria": "Playas",
+      "destacado": true,
+      "capacidad": 6,
+      "habitaciones": 3,
+      "camas": 4,
+      "banos": 2,
+      "precioNoche": 530000,
+      "tarifaLimpieza": 90000,
+      "calificacion": 4.8,
+      "activo": true,
+      "latitud": 12.556,
+      "longitud": -81.715,
+      "imagenPrincipal": "assets/images/casa-de-playa-en-san-andres.jpg",
+      "imagenes": [
+        "assets/images/casa-de-playa-en-san-andres.jpg",
+        "assets/images/casa-de-playa-en-san-andres-2.jpg"
+      ],
+      "servicios": [
+        "Wi-Fi",
+        "Aire acondicionado",
+        "Cocina",
+        "BBQ"
+      ],
+      "reglas": [
+        "No fumar",
+        "No mascotas"
+      ]
+    },
+    {
+      "id": 21,
+      "nombre": "Cabaña en Sound Bay",
+      "descripcion": "Cabaña tradicional isleña con jardín y vista a la bahía.",
+      "ciudad": "San Andrés",
+      "ubicacion": "Sound Bay, San Andrés",
+      "tipo": "Cabaña",
+      "categoria": "Playas",
+      "destacado": false,
+      "capacidad": 4,
+      "habitaciones": 2,
+      "camas": 2,
+      "banos": 1,
+      "precioNoche": 320000,
+      "tarifaLimpieza": 60000,
+      "calificacion": 4.5,
+      "activo": true,
+      "latitud": 12.58,
+      "longitud": -81.698,
+      "imagenPrincipal": "assets/images/cabana-en-sound-bay.jpg",
+      "imagenes": [
+        "assets/images/cabana-en-sound-bay.jpg",
+        "assets/images/cabana-en-sound-bay-2.jpg"
+      ],
+      "servicios": [
+        "Wi-Fi",
+        "Cocina",
+        "Aire acondicionado"
+      ],
+      "reglas": [
+        "No fumar",
+        "Silencio después de las 10 PM"
+      ]
+    },
+    {
+      "id": 22,
+      "nombre": "Apartamento en el Centro de San Andrés",
+      "descripcion": "Apartamento cómodo cerca de restaurantes, tiendas y la playa de Spratt Bight.",
+      "ciudad": "San Andrés",
+      "ubicacion": "Centro, San Andrés",
+      "tipo": "Apartamento",
+      "categoria": "Playas",
+      "destacado": false,
+      "capacidad": 3,
+      "habitaciones": 1,
+      "camas": 2,
+      "banos": 1,
+      "precioNoche": 240000,
+      "tarifaLimpieza": 45000,
+      "calificacion": 4.3,
+      "activo": true,
+      "latitud": 12.585,
+      "longitud": -81.7,
+      "imagenPrincipal": "assets/images/apartamento-en-el-centro-de-san-andres.jpg",
+      "imagenes": [
+        "assets/images/apartamento-en-el-centro-de-san-andres.jpg",
+        "assets/images/apartamento-en-el-centro-de-san-andres-2.jpg"
+      ],
+      "servicios": [
+        "Wi-Fi",
+        "Aire acondicionado",
+        "Televisión"
+      ],
+      "reglas": [
+        "No fumar"
+      ]
+    },
+    {
+      "id": 23,
+      "nombre": "Cabaña en Tolú frente al golfo",
+      "descripcion": "Cabaña sencilla con hamacas y acceso a la playa en el golfo de Morrosquillo.",
+      "ciudad": "Tolú",
+      "ubicacion": "Playa Blanca, Tolú",
+      "tipo": "Cabaña",
+      "categoria": "Playas",
+      "destacado": false,
+      "capacidad": 6,
+      "habitaciones": 3,
+      "camas": 4,
+      "banos": 2,
+      "precioNoche": 270000,
+      "tarifaLimpieza": 50000,
+      "calificacion": 4.1,
+      "activo": true,
+      "latitud": 9.524,
+      "longitud": -75.582,
+      "imagenPrincipal": "assets/images/cabana-en-tolu-frente-al-golfo.jpg",
+      "imagenes": [
+        "assets/images/cabana-en-tolu-frente-al-golfo.jpg",
+        "assets/images/cabana-en-tolu-frente-al-golfo-2.jpg"
+      ],
+      "servicios": [
+        "Ventilador",
+        "Cocina",
+        "BBQ"
+      ],
+      "reglas": [
+        "No fumar",
+        "No fiestas"
+      ]
+    },
+    {
+      "id": 24,
+      "nombre": "Finca cafetera en Salento",
+      "descripcion": "Finca rodeada de cafetales con vista al Valle del Cocora y desayuno típico.",
+      "ciudad": "Salento",
+      "ubicacion": "Valle del Cocora, Salento",
+      "tipo": "Finca",
+      "categoria": "Rural",
+      "destacado": false,
+      "capacidad": 8,
+      "habitaciones": 4,
+      "camas": 5,
+      "banos": 3,
+      "precioNoche": 450000,
+      "tarifaLimpieza": 80000,
+      "calificacion": 4.9,
+      "activo": true,
+      "latitud": 4.637,
+      "longitud": -75.571,
+      "imagenPrincipal": "assets/images/finca-cafetera-en-salento.jpg",
+      "imagenes": [
+        "assets/images/finca-cafetera-en-salento.jpg",
+        "assets/images/finca-cafetera-en-salento-2.jpg"
+      ],
+      "servicios": [
+        "Wi-Fi",
+        "Cocina",
+        "Chimenea",
+        "Parqueadero",
+        "BBQ"
+      ],
+      "reglas": [
+        "No fumar",
+        "No se permiten fiestas"
+      ]
+    },
+    {
+      "id": 25,
+      "nombre": "Cabaña en el bosque en Salento",
+      "descripcion": "Cabaña de madera entre guaduales, perfecta para una escapada en pareja.",
+      "ciudad": "Salento",
+      "ubicacion": "Salento, Quindío",
+      "tipo": "Cabaña",
+      "categoria": "Rural",
+      "destacado": false,
+      "capacidad": 2,
+      "habitaciones": 1,
+      "camas": 1,
+      "banos": 1,
+      "precioNoche": 220000,
+      "tarifaLimpieza": 40000,
+      "calificacion": 4.7,
+      "activo": true,
+      "latitud": 4.64,
+      "longitud": -75.57,
+      "imagenPrincipal": "assets/images/cabana-en-el-bosque-en-salento.jpg",
+      "imagenes": [
+        "assets/images/cabana-en-el-bosque-en-salento.jpg",
+        "assets/images/cabana-en-el-bosque-en-salento-2.jpg"
+      ],
+      "servicios": [
+        "Wi-Fi",
+        "Chimenea",
+        "Cocina"
+      ],
+      "reglas": [
+        "No fumar",
+        "No mascotas"
+      ]
+    },
+    {
+      "id": 26,
+      "nombre": "Casa colonial en Barichara",
+      "descripcion": "Casa de piedra y teja con patio florido en el pueblo más lindo de Colombia.",
+      "ciudad": "Barichara",
+      "ubicacion": "Centro histórico, Barichara",
+      "tipo": "Casa",
+      "categoria": "Rural",
+      "destacado": false,
+      "capacidad": 6,
+      "habitaciones": 3,
+      "camas": 4,
+      "banos": 2,
+      "precioNoche": 380000,
+      "tarifaLimpieza": 70000,
+      "calificacion": 4.8,
+      "activo": true,
+      "latitud": 6.636,
+      "longitud": -73.223,
+      "imagenPrincipal": "assets/images/casa-colonial-en-barichara.jpg",
+      "imagenes": [
+        "assets/images/casa-colonial-en-barichara.jpg",
+        "assets/images/casa-colonial-en-barichara-2.jpg"
+      ],
+      "servicios": [
+        "Wi-Fi",
+        "Cocina",
+        "Parqueadero"
+      ],
+      "reglas": [
+        "No fumar",
+        "No se permiten fiestas"
+      ]
+    },
+    {
+      "id": 27,
+      "nombre": "Casa de campo en Jardín",
+      "descripcion": "Casa campestre con vista a las montañas, a pocos minutos del parque principal.",
+      "ciudad": "Jardín",
+      "ubicacion": "Vereda La Salada, Jardín",
+      "tipo": "Casa",
+      "categoria": "Rural",
+      "destacado": false,
+      "capacidad": 7,
+      "habitaciones": 3,
+      "camas": 5,
+      "banos": 3,
+      "precioNoche": 360000,
+      "tarifaLimpieza": 65000,
+      "calificacion": 4.6,
+      "activo": true,
+      "latitud": 5.598,
+      "longitud": -75.819,
+      "imagenPrincipal": "assets/images/casa-de-campo-en-jardin.jpg",
+      "imagenes": [
+        "assets/images/casa-de-campo-en-jardin.jpg",
+        "assets/images/casa-de-campo-en-jardin-2.jpg"
+      ],
+      "servicios": [
+        "Wi-Fi",
+        "Cocina",
+        "Chimenea",
+        "BBQ",
+        "Parqueadero"
+      ],
+      "reglas": [
+        "No fumar",
+        "No fiestas"
+      ]
+    },
+    {
+      "id": 28,
+      "nombre": "Cabaña con vista al embalse",
+      "descripcion": "Cabaña con terraza y jacuzzi frente al embalse de Guatapé.",
+      "ciudad": "Guatapé",
+      "ubicacion": "Vereda El Roble, Guatapé",
+      "tipo": "Cabaña",
+      "categoria": "Rural",
+      "destacado": false,
+      "capacidad": 4,
+      "habitaciones": 2,
+      "camas": 2,
+      "banos": 2,
+      "precioNoche": 390000,
+      "tarifaLimpieza": 70000,
+      "calificacion": 4.8,
+      "activo": true,
+      "latitud": 6.23,
+      "longitud": -75.16,
+      "imagenPrincipal": "assets/images/cabana-con-vista-al-embalse.jpg",
+      "imagenes": [
+        "assets/images/cabana-con-vista-al-embalse.jpg",
+        "assets/images/cabana-con-vista-al-embalse-2.jpg"
+      ],
+      "servicios": [
+        "Wi-Fi",
+        "Jacuzzi",
+        "Cocina",
+        "Parqueadero"
+      ],
+      "reglas": [
+        "No fumar",
+        "Silencio después de las 10 PM"
+      ]
+    },
+    {
+      "id": 29,
+      "nombre": "Glamping en Villa de Leyva",
+      "descripcion": "Domo con cama king y vista al cielo estrellado, a diez minutos de la plaza.",
+      "ciudad": "Villa de Leyva",
+      "ubicacion": "Vereda Sopotá, Villa de Leyva",
+      "tipo": "Cabaña",
+      "categoria": "Rural",
+      "destacado": false,
+      "capacidad": 2,
+      "habitaciones": 1,
+      "camas": 1,
+      "banos": 1,
+      "precioNoche": 310000,
+      "tarifaLimpieza": 50000,
+      "calificacion": 4.7,
+      "activo": true,
+      "latitud": 5.62,
+      "longitud": -73.54,
+      "imagenPrincipal": "assets/images/glamping-en-villa-de-leyva.jpg",
+      "imagenes": [
+        "assets/images/glamping-en-villa-de-leyva.jpg",
+        "assets/images/glamping-en-villa-de-leyva-2.jpg"
+      ],
+      "servicios": [
+        "Wi-Fi",
+        "Jacuzzi",
+        "Desayuno incluido"
+      ],
+      "reglas": [
+        "No fumar",
+        "No mascotas"
+      ]
+    },
+    {
+      "id": 30,
+      "nombre": "Finca con piscina en Armenia",
+      "descripcion": "Finca para grupos con piscina, zona BBQ y amplias zonas verdes.",
+      "ciudad": "Armenia",
+      "ubicacion": "Vía Calarcá, Armenia",
+      "tipo": "Finca",
+      "categoria": "Rural",
+      "destacado": false,
+      "capacidad": 12,
+      "habitaciones": 5,
+      "camas": 8,
+      "banos": 4,
+      "precioNoche": 580000,
+      "tarifaLimpieza": 110000,
+      "calificacion": 4.5,
+      "activo": true,
+      "latitud": 4.51,
+      "longitud": -75.66,
+      "imagenPrincipal": "assets/images/finca-con-piscina-en-armenia.jpg",
+      "imagenes": [
+        "assets/images/finca-con-piscina-en-armenia.jpg",
+        "assets/images/finca-con-piscina-en-armenia-2.jpg"
+      ],
+      "servicios": [
+        "Piscina",
+        "BBQ",
+        "Parqueadero",
+        "Cocina",
+        "Wi-Fi"
+      ],
+      "reglas": [
+        "No fumar",
+        "Máximo 12 huéspedes"
+      ]
+    },
+    {
+      "id": 31,
+      "nombre": "Casa en Sopó (en remodelación)",
+      "descripcion": "Casa campestre cerca de Bogotá, temporalmente fuera de servicio.",
+      "ciudad": "Sopó",
+      "ubicacion": "Sopó, Cundinamarca",
+      "tipo": "Casa",
+      "categoria": "Rural",
+      "destacado": false,
+      "capacidad": 6,
+      "habitaciones": 3,
+      "camas": 4,
+      "banos": 2,
+      "precioNoche": 400000,
+      "tarifaLimpieza": 70000,
+      "calificacion": 4.2,
+      "activo": false,
+      "latitud": 4.906,
+      "longitud": -73.941,
+      "imagenPrincipal": "assets/images/casa-en-sopo-en-remodelacion.jpg",
+      "imagenes": [
+        "assets/images/casa-en-sopo-en-remodelacion.jpg",
+        "assets/images/casa-en-sopo-en-remodelacion-2.jpg"
+      ],
+      "servicios": [
+        "Wi-Fi",
+        "Chimenea",
+        "Parqueadero"
+      ],
+      "reglas": [
+        "No fumar"
       ]
     }
   ],
@@ -230,6 +1108,108 @@
       "usuario": "Natalia Pérez",
       "calificacion": 4,
       "comentario": "La casa es amplia y está muy bien ubicada."
+    },
+    {
+      "id": 6,
+      "alojamientoId": 10,
+      "usuario": "Sofía Martínez",
+      "calificacion": 5,
+      "comentario": "La terraza y el jacuzzi son espectaculares, volveremos."
+    },
+    {
+      "id": 7,
+      "alojamientoId": 10,
+      "usuario": "Jorge Salazar",
+      "calificacion": 5,
+      "comentario": "Ubicación perfecta y el apartamento impecable."
+    },
+    {
+      "id": 8,
+      "alojamientoId": 13,
+      "usuario": "Diana Ospina",
+      "calificacion": 4,
+      "comentario": "Muy amplia, ideal para ir en familia."
+    },
+    {
+      "id": 9,
+      "alojamientoId": 14,
+      "usuario": "Camila Reyes",
+      "calificacion": 5,
+      "comentario": "Súper fácil reservar y la ubicación no puede ser mejor.",
+      "foto": "assets/images/reseña1.jpg"
+    },
+    {
+      "id": 10,
+      "alojamientoId": 20,
+      "usuario": "Daniel Prado",
+      "calificacion": 5,
+      "comentario": "Despertar frente al mar no tiene precio.",
+      "foto": "assets/images/reseña4.jpg"
+    },
+    {
+      "id": 11,
+      "alojamientoId": 20,
+      "usuario": "Valentina Ríos",
+      "calificacion": 5,
+      "comentario": "Muy cómoda, los kayaks fueron un gran detalle.",
+      "foto": "assets/images/reseña2.jpg"
+    },
+    {
+      "id": 12,
+      "alojamientoId": 19,
+      "usuario": "Isabela Castro",
+      "calificacion": 5,
+      "comentario": "Acceso directo a la playa, todo muy limpio.",
+      "foto": "assets/images/reseña3.jpg"
+    },
+    {
+      "id": 13,
+      "alojamientoId": 17,
+      "usuario": "Felipe Arango",
+      "calificacion": 4,
+      "comentario": "Excelente para descansar cerca de la playa."
+    },
+    {
+      "id": 14,
+      "alojamientoId": 24,
+      "usuario": "Mariana Duque",
+      "calificacion": 5,
+      "comentario": "El mejor café y las mejores vistas del viaje."
+    },
+    {
+      "id": 15,
+      "alojamientoId": 26,
+      "usuario": "Andrés Vargas",
+      "calificacion": 5,
+      "comentario": "Una casa preciosa en un pueblo mágico."
+    },
+    {
+      "id": 16,
+      "alojamientoId": 28,
+      "usuario": "Paula Jiménez",
+      "calificacion": 5,
+      "comentario": "El jacuzzi con vista al embalse fue lo mejor."
+    },
+    {
+      "id": 17,
+      "alojamientoId": 29,
+      "usuario": "Santiago Mejía",
+      "calificacion": 4,
+      "comentario": "Cielo estrellado increíble, muy recomendado."
+    },
+    {
+      "id": 18,
+      "alojamientoId": 8,
+      "usuario": "Lucía Herrera",
+      "calificacion": 4,
+      "comentario": "Perfecto para mi viaje de trabajo."
+    },
+    {
+      "id": 19,
+      "alojamientoId": 12,
+      "usuario": "Mateo Cárdenas",
+      "calificacion": 4,
+      "comentario": "Buen apartamento y muy bien ubicado."
     }
   ]
 }
