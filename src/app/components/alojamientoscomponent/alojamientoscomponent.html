@@ -12,7 +12,7 @@
       <div class="campo" [class.abierto]="menu === 'ciudad'">
         <span class="etiqueta">Dónde</span>
         <button type="button" class="disparador" (click)="abrirMenu('ciudad')">
-          <span [class.placeholder]="!filtros.ciudad">{{ filtros.ciudad || 'Todas' }}</span>
+          <span [class.vacio]="!filtros.ciudad">{{ filtros.ciudad || 'Explorar destinos' }}</span>
           <i class="bi bi-chevron-down"></i>
         </button>
         @if (menu === 'ciudad') {
@@ -32,7 +32,7 @@
       <div class="campo" [class.abierto]="menu === 'tipo'">
         <span class="etiqueta">Tipo</span>
         <button type="button" class="disparador" (click)="abrirMenu('tipo')">
-          <span [class.placeholder]="!filtros.tipo">{{ filtros.tipo || 'Todos' }}</span>
+          <span [class.vacio]="!filtros.tipo">{{ filtros.tipo || 'Ej: Casa' }}</span>
           <i class="bi bi-chevron-down"></i>
         </button>
         @if (menu === 'tipo') {
@@ -58,7 +58,7 @@
       <div class="campo" [class.abierto]="menu === 'precio'">
         <span class="etiqueta">Precios</span>
         <button type="button" class="disparador" (click)="abrirMenu('precio')">
-          <span [class.placeholder]="!filtros.precioMin && !filtros.precioMax">{{ textoPrecio() }}</span>
+          <span [class.vacio]="!filtros.precioMin && !filtros.precioMax">{{ textoPrecio() }}</span>
           <i class="bi bi-chevron-down"></i>
         </button>
         @if (menu === 'precio') {
@@ -79,7 +79,7 @@
       <div class="campo" [class.abierto]="menu === 'rating'">
         <span class="etiqueta">Calificaciones</span>
         <button type="button" class="disparador" (click)="abrirMenu('rating')">
-          <span [class.placeholder]="!filtros.calificacionMin">
+          <span [class.vacio]="!filtros.calificacionMin">
             {{ filtros.calificacionMin ? '★ ' + filtros.calificacionMin + ' o más' : 'Explorar rating' }}
           </span>
           <i class="bi bi-chevron-down"></i>
