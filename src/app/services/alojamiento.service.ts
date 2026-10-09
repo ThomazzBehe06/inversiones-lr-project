@@ -35,7 +35,8 @@ export class AlojamientoService {
       const coincideTipo = filtros.tipo === '' || a.tipo === filtros.tipo;
       const coincideCategoria = filtros.categoria === '' || a.categoria === filtros.categoria;
       const coincideHuespedes = filtros.huespedes === null || a.capacidad >= filtros.huespedes;
-      const coincidePrecio = filtros.precioMax === null || a.precioNoche <= filtros.precioMax;
+      const coincidePrecioMin = filtros.precioMin === null || a.precioNoche >= filtros.precioMin;
+      const coincidePrecioMax = filtros.precioMax === null || a.precioNoche <= filtros.precioMax;
       const coincideCalificacion =
         filtros.calificacionMin === null || a.calificacion >= filtros.calificacionMin;
 
@@ -45,7 +46,8 @@ export class AlojamientoService {
         coincideTipo &&
         coincideCategoria &&
         coincideHuespedes &&
-        coincidePrecio &&
+        coincidePrecioMin &&
+        coincidePrecioMax &&
         coincideCalificacion
       );
     });

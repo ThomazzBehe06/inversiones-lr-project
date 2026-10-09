@@ -4,6 +4,7 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { AlojamientoService } from '../../services/alojamiento.service';
 import { Alojamiento } from '../../models/alojamiento';
 import { Filtros } from '../../models/filtros';
+import { MonedaService } from '../../services/moneda.service';
 
 @Component({
   imports: [FormsModule, RouterLink],
@@ -42,6 +43,7 @@ export class Alojamientoscomponent {
     private alojamientoService: AlojamientoService,
     private route: ActivatedRoute,
     private cdr: ChangeDetectorRef,
+    private monedaService: MonedaService,
   ) {}
 
   ngOnInit(): void {
@@ -162,5 +164,9 @@ export class Alojamientoscomponent {
 
   private aNumero(valor: string | undefined): number | null {
     return valor ? Number(valor) : null;
+  }
+
+  precioConvertido(valorCOP: number): string {
+    return this.monedaService.formatear(valorCOP);
   }
 }

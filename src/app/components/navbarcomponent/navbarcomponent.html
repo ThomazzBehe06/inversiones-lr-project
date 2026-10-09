@@ -29,6 +29,37 @@
                (keyup.enter)="buscar(texto.value)">
       </div>
 
+      <div class="moneda">
+        @if (menuMoneda) {
+          <div class="fondo-menu" (click)="cerrarMenuMoneda()"></div>
+        }
+
+        <button type="button" class="moneda-boton" (click)="alternarMenuMoneda()">
+          <i class="bi bi-globe2"></i>
+          <span>{{ monedaService.monedaActual.codigo }}</span>
+          <i class="bi bi-chevron-down flecha"></i>
+        </button>
+
+        @if (menuMoneda) {
+          <div class="moneda-menu">
+            <p class="moneda-titulo">Elige tu moneda</p>
+
+            @for (m of monedaService.monedas; track m.codigo) {
+              <button type="button" class="moneda-opcion"
+                      [class.activa]="m.codigo === monedaService.monedaActual.codigo"
+                      (click)="elegirMoneda(m.codigo)">
+                <strong>{{ m.codigo }}</strong>
+                <span>{{ m.nombre }}</span>
+              </button>
+            }
+
+            @if (monedaService.usandoRespaldo) {
+              <p class="moneda-aviso">Tasas aproximadas (sin conexión con la API).</p>
+            }
+          </div>
+        }
+      </div>
+
     </div>
   </div>
 </nav>

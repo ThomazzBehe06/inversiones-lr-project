@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AlojamientoService } from '../../services/alojamiento.service';
 import { Alojamiento, Resena } from '../../models/alojamiento';
+import { MonedaService } from '../../services/moneda.service';
 
 @Component({
   imports: [FormsModule, RouterLink],
@@ -45,6 +46,7 @@ export class Iniciocomponent {
     private alojamientoService: AlojamientoService,
     private router: Router,
     private cdr: ChangeDetectorRef,
+    private monedaService: MonedaService,
   ) {}
 
   ngOnInit(): void {
@@ -136,5 +138,9 @@ export class Iniciocomponent {
 
   fondo(imagen: string): string {
     return `linear-gradient(90deg, rgb(10 25 60 / 0.55), rgb(10 25 60 / 0.05)), url('${imagen}')`;
+  }
+
+  precioConvertido(valorCOP: number): string {
+    return this.monedaService.formatear(valorCOP);
   }
 }

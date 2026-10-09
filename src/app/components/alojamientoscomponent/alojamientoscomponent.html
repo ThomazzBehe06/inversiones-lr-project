@@ -63,11 +63,11 @@
         </button>
         @if (menu === 'precio') {
           <div class="menu menu-precio">
-            <label>Mínimo
+            <label>Mínimo (COP)
               <input type="number" name="precioMin" min="0" step="10000" placeholder="$ 0"
                      [(ngModel)]="filtros.precioMin" (ngModelChange)="buscar()">
             </label>
-            <label>Máximo
+            <label>Máximo (COP)
               <input type="number" name="precioMax" min="0" step="10000" placeholder="Sin límite"
                      [(ngModel)]="filtros.precioMax" (ngModelChange)="buscar()">
             </label>
@@ -167,7 +167,7 @@
               </p>
               <p>
                 <span class="estrella"><i class="bi bi-star-fill"></i> {{ alojamiento.calificacion }}</span>
-                <strong>{{ formatoPrecio(alojamiento.precioNoche) }}</strong> / noche
+                <strong>{{ precioConvertido(alojamiento.precioNoche) }}</strong> / noche
               </p>
               <p class="servicios">{{ textoServicios(alojamiento) }}</p>
             </div>
