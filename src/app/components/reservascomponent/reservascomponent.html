@@ -1,0 +1,48 @@
+<section class="mis-reservas-section">
+  <div class="reservas-container">
+    <h1 class="reservas-main-title">Mis reservas</h1>
+
+    <article class="reserva-card">
+      <img
+        class="reserva-img"
+        [src]="reserva.imagenUrl"
+        [alt]="reserva.titulo"
+      >
+
+      <div class="reserva-info">
+        <h2 class="reserva-titulo">{{ reserva.titulo }}</h2>
+        <p class="reserva-ubicacion">{{ reserva.ubicacion }}</p>
+
+        <div class="reserva-detalles">
+          <p class="detalle-item">
+            <i class="bi bi-calendar4-week detalle-icon"></i>
+            <strong> Fechas:</strong> {{ reserva.fechas }}
+          </p>
+
+          <p class="detalle-item">
+            <i class="bi bi-moon detalle-icon"></i>
+            <strong> Duración:</strong> {{ reserva.duracion }}
+          </p>
+
+          <p class="detalle-item">
+            <i class="bi bi-people-fill detalle-icon"></i>
+            <strong>Huéspedes:</strong> {{ reserva.huespedes }}
+          </p>
+        </div>
+
+        <div class="reserva-footer">
+          <span>
+            <strong> Total:</strong> {{ reserva.total }}
+          </span>
+
+          <span class="reserva-badge">
+            <strong> Estado:</strong> {{ reserva.estado }}
+            <span class="badge-icon-circle">
+              <i class="bi bi-check-lg"></i>
+            </span>
+          </span>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
