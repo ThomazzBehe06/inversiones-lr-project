@@ -8,6 +8,11 @@
   margin: 0 auto;
 }
 
+.reservas-lista {
+  display: grid;
+  gap: 1rem;
+}
+
 .reservas-main-title {
   margin: 0 0 1.5rem;
   text-align: center;
@@ -47,11 +52,57 @@
 
 .reserva-footer {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   gap: 1rem;
   margin-top: 1.25rem;
   padding-top: 1rem;
   border-top: 1px solid #ddd;
+}
+
+.reserva-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.35rem 0.65rem;
+  border-radius: 999px;
+  background: #e9f7ef;
+  color: #187443;
+  font-size: 0.85rem;
+}
+
+.badge-icon-circle {
+  display: inline-grid;
+  width: 1.2rem;
+  height: 1.2rem;
+  place-items: center;
+  border-radius: 50%;
+  background: #187443;
+  color: #fff;
+}
+
+.reservas-vacias {
+  padding: 3rem 1rem;
+  border-radius: 8px;
+  background: #fff;
+  color: #666;
+  text-align: center;
+}
+
+.reservas-vacias .bi {
+  display: block;
+  margin-bottom: 0.75rem;
+  color: #718096;
+  font-size: 2.5rem;
+}
+
+.reservas-vacias h2 {
+  color: #333;
+  font-size: 1.25rem;
+}
+
+.reservas-vacias p {
+  margin-bottom: 0;
 }
 
 @media (max-width: 600px) {
