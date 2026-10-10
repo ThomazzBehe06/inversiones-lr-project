@@ -20,11 +20,9 @@
             <button type="button" class="opcion" [class.activa]="!filtros.ciudad"
                     (click)="filtros.ciudad = ''; buscar(); cerrarMenu()">Todas
             </button>
-            @for (c of ciudades; track c) {
-              <button type="button" class="opcion" [class.activa]="filtros.ciudad === c"
-                      (click)="filtros.ciudad = c; buscar(); cerrarMenu()">{{ c }}
-              </button>
-            }
+            <button *ngFor="let c of ciudades" type="button" class="opcion" [class.activa]="filtros.ciudad === c"
+                    (click)="filtros.ciudad = c; buscar(); cerrarMenu()">{{ c }}
+            </button>
           </div>
         }
       </div>
@@ -40,11 +38,9 @@
             <button type="button" class="opcion" [class.activa]="!filtros.tipo"
                     (click)="filtros.tipo = ''; buscar(); cerrarMenu()">Todos
             </button>
-            @for (t of tipos; track t) {
-              <button type="button" class="opcion" [class.activa]="filtros.tipo === t"
-                      (click)="filtros.tipo = t; buscar(); cerrarMenu()">{{ t }}
-              </button>
-            }
+            <button *ngFor="let t of tipos" type="button" class="opcion" [class.activa]="filtros.tipo === t"
+                    (click)="filtros.tipo = t; buscar(); cerrarMenu()">{{ t }}
+            </button>
           </div>
         }
       </div>
@@ -63,13 +59,13 @@
         </button>
         @if (menu === 'precio') {
           <div class="menu menu-precio">
-            <label>Mínimo (COP)
-              <input type="number" name="precioMin" min="0" step="10000" placeholder="$ 0"
-                     [(ngModel)]="filtros.precioMin" (ngModelChange)="buscar()">
+            <label>Mínimo ({{ codigoMoneda }})
+              <input type="number" name="precioMin" min="0" step="any" placeholder="0"
+                     [(ngModel)]="precioMinMoneda" (ngModelChange)="buscar()">
             </label>
-            <label>Máximo (COP)
-              <input type="number" name="precioMax" min="0" step="10000" placeholder="Sin límite"
-                     [(ngModel)]="filtros.precioMax" (ngModelChange)="buscar()">
+            <label>Máximo ({{ codigoMoneda }})
+              <input type="number" name="precioMax" min="0" step="any" placeholder="Sin límite"
+                     [(ngModel)]="precioMaxMoneda" (ngModelChange)="buscar()">
             </label>
             <button type="button" class="btn btn-lr aplicar" (click)="cerrarMenu()">Listo</button>
           </div>
@@ -89,11 +85,10 @@
             <button type="button" class="opcion" [class.activa]="!filtros.calificacionMin"
                     (click)="filtros.calificacionMin = null; buscar(); cerrarMenu()">Cualquiera
             </button>
-            @for (valor of opcionesCalificacion; track valor) {
-              <button type="button" class="opcion" [class.activa]="filtros.calificacionMin === valor"
-                      (click)="filtros.calificacionMin = valor; buscar(); cerrarMenu()">★ {{ valor }} o más
-              </button>
-            }
+            <button *ngFor="let valor of opcionesCalificacion" type="button" class="opcion"
+                    [class.activa]="filtros.calificacionMin === valor"
+                    (click)="filtros.calificacionMin = valor; buscar(); cerrarMenu()">★ {{ valor }} o más
+            </button>
           </div>
         }
       </div>
@@ -112,30 +107,26 @@
 <section class="container-xl seccion">
   <h2 class="titulo-seccion">Categorías de hospedaje</h2>
   <div class="row g-3">
-    @for (categoria of categorias; track categoria.nombre) {
-      <div class="col-4">
-        <a class="tarjeta-imagen" routerLink="/alojamientos"
-           [queryParams]="{ categoria: categoria.nombre }" fragment="resultados"
-           [style.background-image]="fondo(categoria.imagen)">
-          <span>{{ categoria.nombre }}</span>
-        </a>
-      </div>
-    }
+    <div class="col-4" *ngFor="let categoria of categorias">
+      <a class="tarjeta-imagen" routerLink="/alojamientos"
+         [queryParams]="{ categoria: categoria.nombre }" fragment="resultados"
+         [style.background-image]="fondo(categoria.imagen)">
+        <span>{{ categoria.nombre }}</span>
+      </a>
+    </div>
   </div>
 </section>
 
 <section class="container-xl seccion">
   <h2 class="titulo-seccion">Lugares populares</h2>
   <div class="row g-3">
-    @for (lugar of lugares; track lugar.nombre) {
-      <div class="col-4">
-        <a class="tarjeta-imagen tarjeta-lugar" routerLink="/alojamientos"
-           [queryParams]="{ ciudad: lugar.ciudad }" fragment="resultados"
-           [style.background-image]="fondo(lugar.imagen)">
-          <span>{{ lugar.nombre }}</span>
-        </a>
-      </div>
-    }
+    <div class="col-4" *ngFor="let lugar of lugares">
+      <a class="tarjeta-imagen tarjeta-lugar" routerLink="/alojamientos"
+         [queryParams]="{ ciudad: lugar.ciudad }" fragment="resultados"
+         [style.background-image]="fondo(lugar.imagen)">
+        <span>{{ lugar.nombre }}</span>
+      </a>
+    </div>
   </div>
 </section>
 
@@ -154,30 +145,30 @@
   } @else {
     <p class="text-muted">{{ resultados.length }} alojamientos encontrados</p>
     <div class="row g-4">
-      @for (alojamiento of paginados; track alojamiento.id) {
-        <div class="col-4">
-          <article class="tarjeta-alojamiento">
-            <div class="foto">
-              <img [src]="alojamiento.imagenPrincipal" [alt]="alojamiento.nombre">
-            </div>
-            <div class="info">
-              <h3>{{ alojamiento.nombre }}</h3>
-              <p class="datos">
-                {{ alojamiento.ciudad }} · {{ alojamiento.tipo }} · Hasta {{ alojamiento.capacidad }} huéspedes
-              </p>
-              <p>
-                <span class="estrella"><i class="bi bi-star-fill"></i> {{ alojamiento.calificacion }}</span>
-                <strong>{{ precioConvertido(alojamiento.precioNoche) }}</strong> / noche
-              </p>
-              <p class="servicios">{{ textoServicios(alojamiento) }}</p>
-            </div>
-            <div class="acciones-alojamiento">
-              <a class="btn btn-outline-primary" [routerLink]="['/alojamientos', alojamiento.id]">Ver más</a>
-              <a class="btn btn-lr" [routerLink]="['/alojamientos', alojamiento.id]" fragment="cotizacion">Reservar</a>
-            </div>
-          </article>
-        </div>
-      } @empty {
+      <div class="col-4" *ngFor="let alojamiento of paginados">
+        <article class="tarjeta-alojamiento">
+          <div class="foto">
+            <img [src]="alojamiento.imagenPrincipal" [alt]="alojamiento.nombre">
+          </div>
+          <div class="info">
+            <h3>{{ alojamiento.nombre }}</h3>
+            <p class="datos">
+              {{ alojamiento.ciudad }} · {{ alojamiento.tipo }} · Hasta {{ alojamiento.capacidad }} huéspedes
+            </p>
+            <p>
+              <span class="estrella"><i class="bi bi-star-fill"></i> {{ alojamiento.calificacion }}</span>
+              <strong>{{ precioConvertido(alojamiento.precioNoche) }}</strong> / noche
+            </p>
+            <p class="servicios">{{ textoServicios(alojamiento) }}</p>
+          </div>
+          <div class="acciones-alojamiento">
+            <a class="btn btn-outline-primary" [routerLink]="['/alojamientos', alojamiento.id]">Ver más</a>
+            <a class="btn btn-lr" [routerLink]="['/alojamientos', alojamiento.id]" fragment="cotizacion">Reservar</a>
+          </div>
+        </article>
+      </div>
+
+      @if (paginados.length === 0) {
         <div class="col-12">
           <div class="estado">
             <i class="bi bi-house-slash"></i>
@@ -187,16 +178,15 @@
         </div>
       }
     </div>
+
     @if (totalPaginas > 1) {
       <nav class="paginado">
         <button type="button" aria-label="Página anterior"
                 [disabled]="paginaActual === 1" (click)="cambiarPagina(paginaActual - 1)">&lt;
         </button>
-        @for (pagina of paginas; track pagina) {
-          <button type="button" [class.activa]="pagina === paginaActual"
-                  (click)="cambiarPagina(pagina)">{{ pagina }}
-          </button>
-        }
+        <button *ngFor="let pagina of paginas" type="button" [class.activa]="pagina === paginaActual"
+                (click)="cambiarPagina(pagina)">{{ pagina }}
+        </button>
         <button type="button" aria-label="Página siguiente"
                 [disabled]="paginaActual === totalPaginas" (click)="cambiarPagina(paginaActual + 1)">&gt;
         </button>

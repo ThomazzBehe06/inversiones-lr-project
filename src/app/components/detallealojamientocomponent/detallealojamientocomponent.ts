@@ -5,6 +5,7 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { catchError, map, of, switchMap } from 'rxjs';
 import { AlojamientoService } from '../../services/alojamiento.service';
 import { Reservas } from '../../services/reservas';
+import { MonedaService } from '../../services/moneda.service';
 
 const TARIFA_SERVICIO = 0.1;
 
@@ -26,6 +27,7 @@ export class Detallealojamientocomponent {
   private alojamientoService = inject(AlojamientoService);
   private reservasService = inject(Reservas);
   private router = inject(Router);
+  monedaService = inject(MonedaService);
 
 
   private datos = toSignal(
@@ -107,7 +109,7 @@ export class Detallealojamientocomponent {
   }
 
   formatoPrecio(valor: number): string {
-    return '$' + valor.toLocaleString('es-CO');
+    return this.monedaService.formatear(valor);
   }
 
   private sumarDias(fecha: string, dias: number): string {

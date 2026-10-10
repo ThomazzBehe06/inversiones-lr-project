@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
+import { NgFor } from '@angular/common';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { MonedaService } from '../../services/moneda.service';
+import { Moneda } from '../../models/moneda';
 
 @Component({
-  imports: [RouterLink, RouterLinkActive],
+  imports: [RouterLink, RouterLinkActive, NgFor],
   selector: 'app-navbarcomponent',
   styleUrl: './navbarcomponent.css',
   templateUrl: './navbarcomponent.html',
@@ -42,5 +44,9 @@ export class Navbarcomponent {
     this.monedaService.cambiarMoneda(codigo);
     this.menuMoneda = false;
     this.cerrarMenu();
+  }
+
+  porCodigo(indice: number, m: Moneda): string {
+    return m.codigo;
   }
 }

@@ -1,17 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { NgFor } from '@angular/common';
 import { Reserva, Reservas } from '../../services/reservas';
+import { MonedaService } from '../../services/moneda.service';
 
 @Component({
   selector: 'app-reservascomponent',
-  imports: [CommonModule],
+  imports: [NgFor],
   templateUrl: './reservascomponent.html',
   styleUrl: './reservascomponent.css',
 })
 export class Reservascomponent implements OnInit {
   reservas: Reserva[] = [];
 
-  constructor(private reservasService: Reservas) {}
+  constructor(
+    private reservasService: Reservas,
+    private monedaService: MonedaService,
+  ) {}
 
   ngOnInit(): void {
     this.reservas = this.reservasService.obtenerReservas();
@@ -26,6 +30,6 @@ export class Reservascomponent implements OnInit {
   }
 
   formatoPrecio(valor: number): string {
-    return '$' + valor.toLocaleString('es-CO');
+    return this.monedaService.formatear(valor);
   }
 }
