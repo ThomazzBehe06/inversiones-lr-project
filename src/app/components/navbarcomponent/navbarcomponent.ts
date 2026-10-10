@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
-import { NgFor } from '@angular/common';
-import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { Router } from '@angular/router';
 import { MonedaService } from '../../services/moneda.service';
 import { Moneda } from '../../models/moneda';
 
 @Component({
-  imports: [RouterLink, RouterLinkActive, NgFor],
   selector: 'app-navbarcomponent',
+  standalone: false,
   styleUrl: './navbarcomponent.css',
   templateUrl: './navbarcomponent.html',
 })
+
 export class Navbarcomponent {
   menuAbierto: boolean = false;
   menuMoneda: boolean = false;
