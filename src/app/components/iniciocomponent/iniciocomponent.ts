@@ -1,17 +1,16 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { AlojamientoService } from '../../services/alojamiento.service';
 import { Alojamiento, Resena } from '../../models/alojamiento';
 import { MonedaService } from '../../services/moneda.service';
-import { NgFor } from '@angular/common';
 
 @Component({
-  imports: [FormsModule, RouterLink, NgFor],
   selector: 'app-iniciocomponent',
+  standalone: false,
   styleUrl: './iniciocomponent.css',
   templateUrl: './iniciocomponent.html',
 })
+
 export class Iniciocomponent implements OnInit {
   alojamientos: Alojamiento[] = [];
   destacados: Alojamiento[] = [];

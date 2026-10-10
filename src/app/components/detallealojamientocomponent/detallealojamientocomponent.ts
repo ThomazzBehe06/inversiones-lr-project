@@ -1,7 +1,6 @@
 import { Component, computed, inject, linkedSignal, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { FormsModule } from '@angular/forms';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { catchError, map, of, switchMap } from 'rxjs';
 import { AlojamientoService } from '../../services/alojamiento.service';
 import { Reservas } from '../../services/reservas';
@@ -19,10 +18,11 @@ interface Cotizacion {
 
 @Component({
   selector: 'app-detallealojamientocomponent',
-  imports: [FormsModule, RouterLink],
+  standalone: false,
   templateUrl: './detallealojamientocomponent.html',
   styleUrl: './detallealojamientocomponent.css',
 })
+
 export class Detallealojamientocomponent {
   private alojamientoService = inject(AlojamientoService);
   private reservasService = inject(Reservas);
