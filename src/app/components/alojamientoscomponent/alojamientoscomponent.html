@@ -1,0 +1,203 @@
+<section class="hero">
+  <div class="container-xl hero-contenido">
+    <h1 class="hero-titulo">INVERSIONES LR</h1>
+    <p class="hero-descripcion">
+      Encuentra casas, cabañas y apartamentos para tu próxima estancia en Colombia.
+    </p>
+
+    <form class="buscador" (ngSubmit)="verResultados()" (keydown.escape)="cerrarMenu()">
+      @if (menu) {
+        <div class="fondo-menu" (click)="cerrarMenu()"></div>
+      }
+      <div class="campo" [class.abierto]="menu === 'ciudad'">
+        <span class="etiqueta">Dónde</span>
+        <button type="button" class="disparador" (click)="abrirMenu('ciudad')">
+          <span [class.vacio]="!filtros.ciudad">{{ filtros.ciudad || 'Explorar destinos' }}</span>
+          <i class="bi bi-chevron-down"></i>
+        </button>
+        @if (menu === 'ciudad') {
+          <div class="menu">
+            <button type="button" class="opcion" [class.activa]="!filtros.ciudad"
+                    (click)="filtros.ciudad = ''; buscar(); cerrarMenu()">Todas
+            </button>
+            @for (c of ciudades; track c) {
+              <button type="button" class="opcion" [class.activa]="filtros.ciudad === c"
+                      (click)="filtros.ciudad = c; buscar(); cerrarMenu()">{{ c }}
+              </button>
+            }
+          </div>
+        }
+      </div>
+
+      <div class="campo" [class.abierto]="menu === 'tipo'">
+        <span class="etiqueta">Tipo</span>
+        <button type="button" class="disparador" (click)="abrirMenu('tipo')">
+          <span [class.vacio]="!filtros.tipo">{{ filtros.tipo || 'Ej: Casa' }}</span>
+          <i class="bi bi-chevron-down"></i>
+        </button>
+        @if (menu === 'tipo') {
+          <div class="menu">
+            <button type="button" class="opcion" [class.activa]="!filtros.tipo"
+                    (click)="filtros.tipo = ''; buscar(); cerrarMenu()">Todos
+            </button>
+            @for (t of tipos; track t) {
+              <button type="button" class="opcion" [class.activa]="filtros.tipo === t"
+                      (click)="filtros.tipo = t; buscar(); cerrarMenu()">{{ t }}
+              </button>
+            }
+          </div>
+        }
+      </div>
+
+      <div class="campo campo-corto">
+        <label for="f-huespedes">Quién</label>
+        <input id="f-huespedes" name="huespedes" type="number" min="1" placeholder="¿Cuántos?"
+               [(ngModel)]="filtros.huespedes" (ngModelChange)="buscar()">
+      </div>
+
+      <div class="campo" [class.abierto]="menu === 'precio'">
+        <span class="etiqueta">Precios</span>
+        <button type="button" class="disparador" (click)="abrirMenu('precio')">
+          <span [class.vacio]="!filtros.precioMin && !filtros.precioMax">{{ textoPrecio() }}</span>
+          <i class="bi bi-chevron-down"></i>
+        </button>
+        @if (menu === 'precio') {
+          <div class="menu menu-precio">
+            <label>Mínimo (COP)
+              <input type="number" name="precioMin" min="0" step="10000" placeholder="$ 0"
+                     [(ngModel)]="filtros.precioMin" (ngModelChange)="buscar()">
+            </label>
+            <label>Máximo (COP)
+              <input type="number" name="precioMax" min="0" step="10000" placeholder="Sin límite"
+                     [(ngModel)]="filtros.precioMax" (ngModelChange)="buscar()">
+            </label>
+            <button type="button" class="btn btn-lr aplicar" (click)="cerrarMenu()">Listo</button>
+          </div>
+        }
+      </div>
+
+      <div class="campo" [class.abierto]="menu === 'rating'">
+        <span class="etiqueta">Calificaciones</span>
+        <button type="button" class="disparador" (click)="abrirMenu('rating')">
+          <span [class.vacio]="!filtros.calificacionMin">
+            {{ filtros.calificacionMin ? '★ ' + filtros.calificacionMin + ' o más' : 'Explorar rating' }}
+          </span>
+          <i class="bi bi-chevron-down"></i>
+        </button>
+        @if (menu === 'rating') {
+          <div class="menu">
+            <button type="button" class="opcion" [class.activa]="!filtros.calificacionMin"
+                    (click)="filtros.calificacionMin = null; buscar(); cerrarMenu()">Cualquiera
+            </button>
+            @for (valor of opcionesCalificacion; track valor) {
+              <button type="button" class="opcion" [class.activa]="filtros.calificacionMin === valor"
+                      (click)="filtros.calificacionMin = valor; buscar(); cerrarMenu()">★ {{ valor }} o más
+              </button>
+            }
+          </div>
+        }
+      </div>
+
+      <button type="submit" class="btn-buscar" aria-label="Buscar alojamientos">
+        <i class="bi bi-search"></i>
+      </button>
+    </form>
+
+    <div class="acciones-buscador">
+      <button type="button" class="btn-limpiar" (click)="limpiarFiltros()">Limpiar filtros</button>
+    </div>
+  </div>
+</section>
+
+<section class="container-xl seccion">
+  <h2 class="titulo-seccion">Categorías de hospedaje</h2>
+  <div class="row g-3">
+    @for (categoria of categorias; track categoria.nombre) {
+      <div class="col-4">
+        <a class="tarjeta-imagen" routerLink="/alojamientos"
+           [queryParams]="{ categoria: categoria.nombre }" fragment="resultados"
+           [style.background-image]="fondo(categoria.imagen)">
+          <span>{{ categoria.nombre }}</span>
+        </a>
+      </div>
+    }
+  </div>
+</section>
+
+<section class="container-xl seccion">
+  <h2 class="titulo-seccion">Lugares populares</h2>
+  <div class="row g-3">
+    @for (lugar of lugares; track lugar.nombre) {
+      <div class="col-4">
+        <a class="tarjeta-imagen tarjeta-lugar" routerLink="/alojamientos"
+           [queryParams]="{ ciudad: lugar.ciudad }" fragment="resultados"
+           [style.background-image]="fondo(lugar.imagen)">
+          <span>{{ lugar.nombre }}</span>
+        </a>
+      </div>
+    }
+  </div>
+</section>
+
+<section class="container-xl seccion pb-5" id="resultados">
+  <h2 class="titulo-seccion">Alojamientos disponibles</h2>
+  @if (error) {
+    <div class="estado estado-error">
+      <i class="bi bi-wifi-off"></i>
+      <p class="mb-0">No pudimos cargar los alojamientos. Intenta recargar la página.</p>
+    </div>
+  } @else if (cargando) {
+    <div class="estado">
+      <div class="spinner-border text-primary"></div>
+      <p class="mt-2 mb-0">Cargando alojamientos...</p>
+    </div>
+  } @else {
+    <p class="text-muted">{{ resultados.length }} alojamientos encontrados</p>
+    <div class="row g-4">
+      @for (alojamiento of paginados; track alojamiento.id) {
+        <div class="col-4">
+          <article class="tarjeta-alojamiento">
+            <div class="foto">
+              <img [src]="alojamiento.imagenPrincipal" [alt]="alojamiento.nombre">
+            </div>
+            <div class="info">
+              <h3>{{ alojamiento.nombre }}</h3>
+              <p class="datos">
+                {{ alojamiento.ciudad }} · {{ alojamiento.tipo }} · Hasta {{ alojamiento.capacidad }} huéspedes
+              </p>
+              <p>
+                <span class="estrella"><i class="bi bi-star-fill"></i> {{ alojamiento.calificacion }}</span>
+                <strong>{{ precioConvertido(alojamiento.precioNoche) }}</strong> / noche
+              </p>
+              <p class="servicios">{{ textoServicios(alojamiento) }}</p>
+            </div>
+            <a class="btn btn-lr ver-mas" [routerLink]="['/alojamientos', alojamiento.id]">Ver más</a>
+          </article>
+        </div>
+      } @empty {
+        <div class="col-12">
+          <div class="estado">
+            <i class="bi bi-house-slash"></i>
+            <p class="mb-2">No encontramos alojamientos con esos filtros.</p>
+            <button type="button" class="btn btn-lr" (click)="limpiarFiltros()">Limpiar filtros</button>
+          </div>
+        </div>
+      }
+    </div>
+    @if (totalPaginas > 1) {
+      <nav class="paginado">
+        <button type="button" aria-label="Página anterior"
+                [disabled]="paginaActual === 1" (click)="cambiarPagina(paginaActual - 1)">&lt;
+        </button>
+        @for (pagina of paginas; track pagina) {
+          <button type="button" [class.activa]="pagina === paginaActual"
+                  (click)="cambiarPagina(pagina)">{{ pagina }}
+          </button>
+        }
+        <button type="button" aria-label="Página siguiente"
+                [disabled]="paginaActual === totalPaginas" (click)="cambiarPagina(paginaActual + 1)">&gt;
+        </button>
+      </nav>
+    }
+  }
+</section>

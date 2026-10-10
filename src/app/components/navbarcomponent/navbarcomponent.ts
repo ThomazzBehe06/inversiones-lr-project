@@ -1,34 +1,46 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { MonedaService } from '../../services/moneda.service';
 
 @Component({
-  // Rutas del HTML
   imports: [RouterLink, RouterLinkActive],
   selector: 'app-navbarcomponent',
   styleUrl: './navbarcomponent.css',
   templateUrl: './navbarcomponent.html',
 })
 export class Navbarcomponent {
-  private router = inject(Router);
+  menuAbierto: boolean = false;
+  menuMoneda: boolean = false;
 
-  // Menu en celulares
-  protected menuAbierto = signal(false);
+  constructor(private router: Router, public monedaService: MonedaService) {}
 
-  // Abrir / cerrar menu
   alternarMenu(): void {
-    this.menuAbierto.update((abierto) => !abierto);
+    this.menuAbierto = !this.menuAbierto;
   }
 
   cerrarMenu(): void {
-    this.menuAbierto.set(false);
+    this.menuAbierto = false;
   }
 
-  // Buscador: va a /alojamientos?busqueda=...
-  buscar(valor: string): void {
-    const termino = valor.trim();
+  buscar(texto: string): void {
+    const busqueda = texto.trim();
     this.router.navigate(['/alojamientos'], {
-      queryParams: termino ? { busqueda: termino } : {},
+      queryParams: busqueda ? { busqueda: busqueda } : {},
     });
+    this.cerrarMenu();
+  }
+
+  alternarMenuMoneda(): void {
+    this.menuMoneda = !this.menuMoneda;
+  }
+
+  cerrarMenuMoneda(): void {
+    this.menuMoneda = false;
+  }
+
+  elegirMoneda(codigo: string): void {
+    this.monedaService.cambiarMoneda(codigo);
+    this.menuMoneda = false;
     this.cerrarMenu();
   }
 }

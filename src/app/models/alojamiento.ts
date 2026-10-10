@@ -1,4 +1,3 @@
-// Modelo de un alojamiento (igual al JSON)
 export interface Alojamiento {
   id: number;
   nombre: string;
@@ -16,13 +15,24 @@ export interface Alojamiento {
   tarifaLimpieza: number;
   calificacion: number;
   activo: boolean;
+  latitud?: number;
+  longitud?: number;
   imagenPrincipal: string;
   imagenes: string[];
   servicios: string[];
   reglas: string[];
 }
 
-// Estructura del archivo JSON
+export interface Resena {
+  id: number;
+  alojamientoId: number;
+  usuario: string;
+  calificacion: number;
+  comentario: string;
+  foto?: string;
+}
+
 export interface MarketplaceData {
   alojamientos: Alojamiento[];
+  resenas: Resena[];
 }

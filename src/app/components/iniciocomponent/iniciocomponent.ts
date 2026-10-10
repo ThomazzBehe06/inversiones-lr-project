@@ -1,132 +1,146 @@
-import { Component, computed, inject, signal } from '@angular/core';
-import { CurrencyPipe } from '@angular/common';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { catchError, of } from 'rxjs';
 import { AlojamientoService } from '../../services/alojamiento.service';
-import { Alojamiento } from '../../models/alojamiento';
-
-// Filtros del buscador
-interface Filtros {
-  ciudad?: string;
-  tipo?: string;
-  llegada?: string;
-  salida?: string;
-  huespedes?: number;
-  precioMax?: number;
-  calificacionMin?: number;
-}
-
-// Tarjeta con foto (categorias y lugares)
-interface Tarjeta {
-  nombre: string;
-  imagen: string;
-  filtro: Filtros & { categoria?: string };
-}
+import { Alojamiento, Resena } from '../../models/alojamiento';
+import { MonedaService } from '../../services/moneda.service';
 
 @Component({
-  imports: [FormsModule, RouterLink, CurrencyPipe],
+  imports: [FormsModule, RouterLink],
   selector: 'app-iniciocomponent',
   styleUrl: './iniciocomponent.css',
   templateUrl: './iniciocomponent.html',
 })
 export class Iniciocomponent {
-  private alojamientoService = inject(AlojamientoService);
-  private router = inject(Router);
-
-  // Fecha de hoy (yyyy-MM-dd)
-  protected hoy = this.fechaLocal(new Date());
-
-  // Buscador
-  protected filtros: Filtros = {};
-  protected opcionesPrecio = [200000, 300000, 400000, 500000, 700000];
-  protected opcionesCalificacion = [4.5, 4, 3.5];
-
-  // Categorias
-  protected categorias: Tarjeta[] = [
-    { nombre: 'Urbano', imagen: 'assets/images/categoria-urbano.jpg', filtro: { categoria: 'Urbano' } },
-    { nombre: 'Playas', imagen: 'assets/images/categoria-playas.jpg', filtro: { categoria: 'Playas' } },
-    { nombre: 'Rural', imagen: 'assets/images/categoria-rural.jpg', filtro: { categoria: 'Rural' } },
+  alojamientos: Alojamiento[] = [];
+  destacados: Alojamiento[] = [];
+  resenas: Resena[] = [];
+  ciudades: string[] = [];
+  tipos: string[] = [];
+  cargando: boolean = true;
+  error: boolean = false;
+  ciudad: string = '';
+  tipo: string = '';
+  huespedes: number | null = null;
+  precioMin: number | null = null;
+  precioMax: number | null = null;
+  calificacionMin: number | null = null;
+  opcionesCalificacion: number[] = [4.5, 4, 3.5];
+  menu: string = '';
+  categorias = [
+    { nombre: 'Urbano', imagen: 'assets/images/categoria-urbano.jpg' },
+    { nombre: 'Playas', imagen: 'assets/images/categoria-playas.jpg' },
+    { nombre: 'Rural', imagen: 'assets/images/categoria-rural.jpg' },
   ];
 
-  // Lugares populares
-  protected lugares: Tarjeta[] = [
-    { nombre: 'Santa Marta', imagen: 'assets/images/ciudad-santa-marta.jpg', filtro: { ciudad: 'Santa Marta' } },
-    { nombre: 'Bogotá', imagen: 'assets/images/ciudad-bogota.jpg', filtro: { ciudad: 'Bogotá' } },
-    { nombre: 'Cartagena de Indias', imagen: 'assets/images/ciudad-cartagena.jpg', filtro: { ciudad: 'Cartagena' } },
-    { nombre: 'Medellín', imagen: 'assets/images/ciudad-medellin.jpg', filtro: { ciudad: 'Medellín' } },
-    { nombre: 'San Andrés', imagen: 'assets/images/ciudad-san-andres.jpg', filtro: { ciudad: 'San Andrés' } },
-    { nombre: 'Cali', imagen: 'assets/images/ciudad-cali.jpg', filtro: { ciudad: 'Cali' } },
+  lugares = [
+    { nombre: 'Santa Marta', ciudad: 'Santa Marta', imagen: 'assets/images/ciudad-santa-marta.jpg' },
+    { nombre: 'Bogotá', ciudad: 'Bogotá', imagen: 'assets/images/ciudad-bogota.jpg' },
+    { nombre: 'Cartagena de Indias', ciudad: 'Cartagena', imagen: 'assets/images/ciudad-cartagena.jpg' },
+    { nombre: 'Medellín', ciudad: 'Medellín', imagen: 'assets/images/ciudad-medellin.jpg' },
+    { nombre: 'San Andrés', ciudad: 'San Andrés', imagen: 'assets/images/ciudad-san-andres.jpg' },
+    { nombre: 'Cali', ciudad: 'Cali', imagen: 'assets/images/ciudad-cali.jpg' },
   ];
 
-  // Datos del JSON
-  protected errorCarga = signal(false);
-  protected alojamientos = toSignal<Alojamiento[] | undefined>(
-    this.alojamientoService.getAlojamientos().pipe(
-      catchError(() => {
-        this.errorCarga.set(true);
-        return of([]);
-      }),
-    ),
-  );
+  constructor(
+    private alojamientoService: AlojamientoService,
+    private router: Router,
+    private cdr: ChangeDetectorRef,
+    private monedaService: MonedaService,
+  ) {}
 
-  // Destacados (undefined = cargando)
-  protected destacados = computed(() => this.alojamientos()?.filter((a) => a.destacado));
+  ngOnInit(): void {
+    this.alojamientoService.getAlojamientos().subscribe({
+      next: (lista) => {
+        this.alojamientos = lista;
+        this.destacados = lista.filter((a) => a.destacado).slice(0, 6);
+        this.ciudades = [...new Set(lista.map((a) => a.ciudad))].sort();
+        this.tipos = [...new Set(lista.map((a) => a.tipo))].sort();
+        this.cargando = false;
+        this.cdr.detectChanges();
+      },
+      error: () => {
+        this.cargando = false;
+        this.error = true;
+        this.cdr.detectChanges();
+      },
+    });
 
-  // Opciones de Donde y Tipo
-  protected ciudades = computed(() => this.unicos(this.alojamientos()?.map((a) => a.ciudad)));
-  protected tipos = computed(() => this.unicos(this.alojamientos()?.map((a) => a.tipo)));
-
-  // Validacion de fechas
-  get errorFechas(): string | null {
-    const { llegada, salida } = this.filtros;
-    if (llegada && llegada < this.hoy) {
-      return 'La fecha de llegada no puede ser anterior a hoy.';
-    }
-    if (llegada && salida && salida <= llegada) {
-      return 'La fecha de salida debe ser posterior a la de llegada.';
-    }
-    return null;
+    this.alojamientoService.getResenas().subscribe((lista) => {
+      this.resenas = lista
+        .filter((r) => r.calificacion === 5)
+        .sort((a, b) => (b.foto ? 1 : 0) - (a.foto ? 1 : 0))
+        .slice(0, 4);
+      this.cdr.detectChanges();
+    });
   }
 
-  // Boton buscar
   buscar(): void {
-    if (this.errorFechas) return;
-
-    // Solo filtros con valor
-    const queryParams = Object.fromEntries(
-      Object.entries(this.filtros).filter(([, valor]) => valor !== null && valor !== undefined && valor !== ''),
-    );
-    this.router.navigate(['/alojamientos'], { queryParams });
+    this.router.navigate(['/alojamientos'], {
+      queryParams: {
+        ciudad: this.ciudad || null,
+        tipo: this.tipo || null,
+        huespedes: this.huespedes || null,
+        precioMin: this.precioMin || null,
+        precioMax: this.precioMax || null,
+        calificacionMin: this.calificacionMin || null,
+      },
+      fragment: 'resultados',
+    });
   }
 
-  // Boton limpiar
   limpiarFiltros(): void {
-    this.filtros = {};
+    this.ciudad = '';
+    this.tipo = '';
+    this.huespedes = null;
+    this.precioMin = null;
+    this.precioMax = null;
+    this.calificacionMin = null;
+    this.menu = '';
   }
 
-  // Imagen de reemplazo
-  imagenNoDisponible(evento: Event): void {
-    const img = evento.target as HTMLImageElement;
-    if (!img.src.endsWith('sin-imagen.svg')) {
-      img.src = 'assets/images/sin-imagen.svg';
+  abrirMenu(nombre: string): void {
+    this.menu = this.menu === nombre ? '' : nombre;
+  }
+
+  cerrarMenu(): void {
+    this.menu = '';
+  }
+
+  formatoPrecio(valor: number): string {
+    return '$' + valor.toLocaleString('es-CO');
+  }
+
+  textoPrecio(): string {
+    if (this.precioMin && this.precioMax) {
+      return this.formatoPrecio(this.precioMin) + ' – ' + this.formatoPrecio(this.precioMax);
     }
+    if (this.precioMin) {
+      return 'Desde ' + this.formatoPrecio(this.precioMin);
+    }
+    if (this.precioMax) {
+      return 'Hasta ' + this.formatoPrecio(this.precioMax);
+    }
+    return 'Añadir rango';
   }
 
-  // Fondo de tarjeta: sombra + foto + color de respaldo
+  textoServicios(alojamiento: Alojamiento): string {
+    return alojamiento.servicios.join(' · ');
+  }
+
+  estrellas(calificacion: number): string {
+    return '★'.repeat(calificacion) + '☆'.repeat(5 - calificacion);
+  }
+
+  nombreAlojamiento(id: number): string {
+    return this.alojamientos.find((a) => a.id === id)?.nombre ?? '';
+  }
+
   fondo(imagen: string): string {
-    return `linear-gradient(90deg, rgb(10 25 60 / 0.55), rgb(10 25 60 / 0.05)), url('${imagen}'), linear-gradient(135deg, #2b4f9e, #6dbac0)`;
+    return `linear-gradient(90deg, rgb(10 25 60 / 0.55), rgb(10 25 60 / 0.05)), url('${imagen}')`;
   }
 
-  // Lista sin repetidos
-  private unicos(lista: string[] = []): string[] {
-    return [...new Set(lista)].sort();
-  }
-
-  private fechaLocal(fecha: Date): string {
-    const mes = String(fecha.getMonth() + 1).padStart(2, '0');
-    const dia = String(fecha.getDate()).padStart(2, '0');
-    return `${fecha.getFullYear()}-${mes}-${dia}`;
+  precioConvertido(valorCOP: number): string {
+    return this.monedaService.formatear(valorCOP);
   }
 }
