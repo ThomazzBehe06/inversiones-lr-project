@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, catchError, map, of } from 'rxjs';
 import { Moneda } from '../models/moneda';
@@ -31,7 +31,7 @@ export class MonedaService {
     { codigo: 'CNY', nombre: 'Yuan chino', simbolo: 'CN¥', decimales: 2, tasa: 0.0018 },
   ];
 
-  monedaActual: Moneda = this.monedas[0];
+  monedaActual = signal<Moneda>(this.monedas[0]);
   usandoRespaldo: boolean = false;
 
   constructor(private http: HttpClient) {
@@ -39,7 +39,7 @@ export class MonedaService {
     const encontrada = this.monedas.find((m) => m.codigo === guardada);
 
     if (encontrada) {
-      this.monedaActual = encontrada;
+      this.monedaActual.set(encontrada);
     }
   }
 
@@ -63,6 +63,7 @@ export class MonedaService {
         }
 
         this.usandoRespaldo = actualizadas === 0;
+        this.refrescarMonedaActual();
         return actualizadas > 0;
       }),
 
@@ -80,12 +81,12 @@ export class MonedaService {
       return;
     }
 
-    this.monedaActual = moneda;
+    this.monedaActual.set(moneda);
     localStorage.setItem(this.claveMoneda, codigo);
   }
 
   formatear(precioCOP: number): string {
-    const moneda = this.monedaActual;
+    const moneda = this.monedaActual();
     const valor = precioCOP * moneda.tasa;
 
     const numero = valor.toLocaleString('es-CO', {
@@ -94,5 +95,32 @@ export class MonedaService {
     });
 
     return moneda.simbolo + ' ' + numero;
+  }
+
+  aCOP(valor: number | null): number | null {
+    if (valor == null || isNaN(valor)) {
+      return null;
+    }
+
+    return Math.round(valor / this.monedaActual().tasa);
+  }
+
+  deCOP(valorCOP: number | null): number | null {
+    if (valorCOP == null) {
+      return null;
+    }
+
+    const moneda = this.monedaActual();
+    const factor = Math.pow(10, moneda.decimales);
+
+    return Math.round(valorCOP * moneda.tasa * factor) / factor;
+  }
+
+  private refrescarMonedaActual(): void {
+    const actual = this.monedas.find((m) => m.codigo === this.monedaActual().codigo);
+
+    if (actual) {
+      this.monedaActual.set({ ...actual });
+    }
   }
 }

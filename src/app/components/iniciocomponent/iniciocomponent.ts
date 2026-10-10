@@ -1,17 +1,18 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AlojamientoService } from '../../services/alojamiento.service';
 import { Alojamiento, Resena } from '../../models/alojamiento';
 import { MonedaService } from '../../services/moneda.service';
+import { NgFor } from '@angular/common';
 
 @Component({
-  imports: [FormsModule, RouterLink],
+  imports: [FormsModule, RouterLink, NgFor],
   selector: 'app-iniciocomponent',
   styleUrl: './iniciocomponent.css',
   templateUrl: './iniciocomponent.html',
 })
-export class Iniciocomponent {
+export class Iniciocomponent implements OnInit {
   alojamientos: Alojamiento[] = [];
   destacados: Alojamiento[] = [];
   resenas: Resena[] = [];
@@ -108,7 +109,7 @@ export class Iniciocomponent {
   }
 
   formatoPrecio(valor: number): string {
-    return '$' + valor.toLocaleString('es-CO');
+    return this.monedaService.formatear(valor);
   }
 
   textoPrecio(): string {
@@ -122,6 +123,26 @@ export class Iniciocomponent {
       return 'Hasta ' + this.formatoPrecio(this.precioMax);
     }
     return 'Añadir rango';
+  }
+
+  get codigoMoneda(): string {
+    return this.monedaService.monedaActual().codigo;
+  }
+
+  get precioMinMoneda(): number | null {
+    return this.monedaService.deCOP(this.precioMin);
+  }
+
+  set precioMinMoneda(valor: number | null) {
+    this.precioMin = this.monedaService.aCOP(valor);
+  }
+
+  get precioMaxMoneda(): number | null {
+    return this.monedaService.deCOP(this.precioMax);
+  }
+
+  set precioMaxMoneda(valor: number | null) {
+    this.precioMax = this.monedaService.aCOP(valor);
   }
 
   textoServicios(alojamiento: Alojamiento): string {

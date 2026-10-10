@@ -20,11 +20,9 @@
             <button type="button" class="opcion" [class.activa]="!ciudad"
                     (click)="ciudad = ''; cerrarMenu()">Todas
             </button>
-            @for (c of ciudades; track c) {
-              <button type="button" class="opcion" [class.activa]="ciudad === c"
-                      (click)="ciudad = c; cerrarMenu()">{{ c }}
-              </button>
-            }
+            <button *ngFor="let c of ciudades" type="button" class="opcion" [class.activa]="ciudad === c"
+                    (click)="ciudad = c; cerrarMenu()">{{ c }}
+            </button>
           </div>
         }
       </div>
@@ -40,11 +38,9 @@
             <button type="button" class="opcion" [class.activa]="!tipo"
                     (click)="tipo = ''; cerrarMenu()">Todos
             </button>
-            @for (t of tipos; track t) {
-              <button type="button" class="opcion" [class.activa]="tipo === t"
-                      (click)="tipo = t; cerrarMenu()">{{ t }}
-              </button>
-            }
+            <button *ngFor="let t of tipos" type="button" class="opcion" [class.activa]="tipo === t"
+                    (click)="tipo = t; cerrarMenu()">{{ t }}
+            </button>
           </div>
         }
       </div>
@@ -63,13 +59,13 @@
         </button>
         @if (menu === 'precio') {
           <div class="menu menu-precio">
-            <label>Mínimo (COP)
-              <input type="number" name="precioMin" min="0" step="10000" placeholder="$ 0"
-                     [(ngModel)]="precioMin">
+            <label>Mínimo ({{ codigoMoneda }})
+              <input type="number" name="precioMin" min="0" step="any" placeholder="0"
+                     [(ngModel)]="precioMinMoneda">
             </label>
-            <label>Máximo (COP)
-              <input type="number" name="precioMax" min="0" step="10000" placeholder="Sin límite"
-                     [(ngModel)]="precioMax">
+            <label>Máximo ({{ codigoMoneda }})
+              <input type="number" name="precioMax" min="0" step="any" placeholder="Sin límite"
+                     [(ngModel)]="precioMaxMoneda">
             </label>
             <button type="button" class="btn btn-lr aplicar" (click)="cerrarMenu()">Listo</button>
           </div>
@@ -89,11 +85,10 @@
             <button type="button" class="opcion" [class.activa]="!calificacionMin"
                     (click)="calificacionMin = null; cerrarMenu()">Cualquiera
             </button>
-            @for (valor of opcionesCalificacion; track valor) {
-              <button type="button" class="opcion" [class.activa]="calificacionMin === valor"
-                      (click)="calificacionMin = valor; cerrarMenu()">★ {{ valor }} o más
-              </button>
-            }
+            <button *ngFor="let valor of opcionesCalificacion" type="button" class="opcion"
+                    [class.activa]="calificacionMin === valor"
+                    (click)="calificacionMin = valor; cerrarMenu()">★ {{ valor }} o más
+            </button>
           </div>
         }
       </div>
@@ -112,30 +107,26 @@
 <section class="container-xl seccion">
   <h2 class="titulo-seccion">Categorías de hospedaje</h2>
   <div class="row g-3">
-    @for (categoria of categorias; track categoria.nombre) {
-      <div class="col-4">
-        <a class="tarjeta-imagen" routerLink="/alojamientos"
-           [queryParams]="{ categoria: categoria.nombre }" fragment="resultados"
-           [style.background-image]="fondo(categoria.imagen)">
-          <span>{{ categoria.nombre }}</span>
-        </a>
-      </div>
-    }
+    <div class="col-4" *ngFor="let categoria of categorias">
+      <a class="tarjeta-imagen" routerLink="/alojamientos"
+         [queryParams]="{ categoria: categoria.nombre }" fragment="resultados"
+         [style.background-image]="fondo(categoria.imagen)">
+        <span>{{ categoria.nombre }}</span>
+      </a>
+    </div>
   </div>
 </section>
 
 <section class="container-xl seccion">
   <h2 class="titulo-seccion">Lugares populares</h2>
   <div class="row g-3">
-    @for (lugar of lugares; track lugar.nombre) {
-      <div class="col-4">
-        <a class="tarjeta-imagen tarjeta-lugar" routerLink="/alojamientos"
-           [queryParams]="{ ciudad: lugar.ciudad }" fragment="resultados"
-           [style.background-image]="fondo(lugar.imagen)">
-          <span>{{ lugar.nombre }}</span>
-        </a>
-      </div>
-    }
+    <div class="col-4" *ngFor="let lugar of lugares">
+      <a class="tarjeta-imagen tarjeta-lugar" routerLink="/alojamientos"
+         [queryParams]="{ ciudad: lugar.ciudad }" fragment="resultados"
+         [style.background-image]="fondo(lugar.imagen)">
+        <span>{{ lugar.nombre }}</span>
+      </a>
+    </div>
   </div>
 </section>
 
@@ -153,29 +144,27 @@
     </div>
   } @else {
     <div class="row g-4">
-      @for (alojamiento of destacados; track alojamiento.id) {
-        <div class="col-4">
-          <article class="tarjeta-alojamiento">
-            <div class="foto">
-              <img [src]="alojamiento.imagenPrincipal" [alt]="alojamiento.nombre">
-            </div>
+      <div class="col-4" *ngFor="let alojamiento of destacados">
+        <article class="tarjeta-alojamiento">
+          <div class="foto">
+            <img [src]="alojamiento.imagenPrincipal" [alt]="alojamiento.nombre">
+          </div>
 
-            <div class="info">
-              <h3>{{ alojamiento.nombre }}</h3>
-              <p class="datos">
-                {{ alojamiento.ciudad }} · {{ alojamiento.tipo }} · Hasta {{ alojamiento.capacidad }} huéspedes
-              </p>
-              <p>
-                <span class="estrella"><i class="bi bi-star-fill"></i> {{ alojamiento.calificacion }}</span>
-                <strong>{{ precioConvertido(alojamiento.precioNoche) }}</strong> / noche
-              </p>
-              <p class="servicios">{{ textoServicios(alojamiento) }}</p>
-            </div>
+          <div class="info">
+            <h3>{{ alojamiento.nombre }}</h3>
+            <p class="datos">
+              {{ alojamiento.ciudad }} · {{ alojamiento.tipo }} · Hasta {{ alojamiento.capacidad }} huéspedes
+            </p>
+            <p>
+              <span class="estrella"><i class="bi bi-star-fill"></i> {{ alojamiento.calificacion }}</span>
+              <strong>{{ precioConvertido(alojamiento.precioNoche) }}</strong> / noche
+            </p>
+            <p class="servicios">{{ textoServicios(alojamiento) }}</p>
+          </div>
 
-            <a class="btn btn-lr ver-mas" [routerLink]="['/alojamientos', alojamiento.id]">Ver más</a>
-          </article>
-        </div>
-      }
+          <a class="btn btn-lr ver-mas" [routerLink]="['/alojamientos', alojamiento.id]">Ver más</a>
+        </article>
+      </div>
     </div>
 
     <div class="text-center mt-4">
@@ -188,17 +177,15 @@
   <section class="container-xl seccion">
     <h2 class="titulo-seccion">Reseñas</h2>
     <div class="row g-4">
-      @for (resena of resenas; track resena.id) {
-        <div class="col-3">
-          <article class="resena">
-            <img class="resena-foto" [src]="resena.foto" [alt]="resena.usuario">
-            <p class="resena-estrellas">{{ estrellas(resena.calificacion) }}</p>
-            <p class="resena-comentario">“{{ resena.comentario }}”</p>
-            <p class="resena-nombre">{{ resena.usuario }}</p>
-            <p class="resena-alojamiento">{{ nombreAlojamiento(resena.alojamientoId) }}</p>
-          </article>
-        </div>
-      }
+      <div class="col-3" *ngFor="let resena of resenas">
+        <article class="resena">
+          <img class="resena-foto" [src]="resena.foto" [alt]="resena.usuario">
+          <p class="resena-estrellas">{{ estrellas(resena.calificacion) }}</p>
+          <p class="resena-comentario">“{{ resena.comentario }}”</p>
+          <p class="resena-nombre">{{ resena.usuario }}</p>
+          <p class="resena-alojamiento">{{ nombreAlojamiento(resena.alojamientoId) }}</p>
+        </article>
+      </div>
     </div>
   </section>
 }

@@ -1,18 +1,19 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { AlojamientoService } from '../../services/alojamiento.service';
 import { Alojamiento } from '../../models/alojamiento';
 import { Filtros } from '../../models/filtros';
 import { MonedaService } from '../../services/moneda.service';
+import { NgFor } from '@angular/common';
 
 @Component({
-  imports: [FormsModule, RouterLink],
+  imports: [FormsModule, RouterLink, NgFor],
   selector: 'app-alojamientoscomponent',
   styleUrl: './alojamientoscomponent.css',
   templateUrl: './alojamientoscomponent.html',
 })
-export class Alojamientoscomponent {
+export class Alojamientoscomponent implements OnInit {
   alojamientos: Alojamiento[] = [];
   resultados: Alojamiento[] = [];
   ciudades: string[] = [];
@@ -101,7 +102,7 @@ export class Alojamientoscomponent {
   }
 
   formatoPrecio(valor: number): string {
-    return '$' + valor.toLocaleString('es-CO');
+    return this.monedaService.formatear(valor);
   }
 
   textoPrecio(): string {
@@ -110,6 +111,26 @@ export class Alojamientoscomponent {
     if (precioMin) return 'Desde ' + this.formatoPrecio(precioMin);
     if (precioMax) return 'Hasta ' + this.formatoPrecio(precioMax);
     return 'Añadir rango';
+  }
+
+  get codigoMoneda(): string {
+    return this.monedaService.monedaActual().codigo;
+  }
+
+  get precioMinMoneda(): number | null {
+    return this.monedaService.deCOP(this.filtros.precioMin);
+  }
+
+  set precioMinMoneda(valor: number | null) {
+    this.filtros.precioMin = this.monedaService.aCOP(valor);
+  }
+
+  get precioMaxMoneda(): number | null {
+    return this.monedaService.deCOP(this.filtros.precioMax);
+  }
+
+  set precioMaxMoneda(valor: number | null) {
+    this.filtros.precioMax = this.monedaService.aCOP(valor);
   }
 
   textoServicios(alojamiento: Alojamiento): string {
