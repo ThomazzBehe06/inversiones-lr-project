@@ -15,6 +15,12 @@ export class AlojamientoService {
     );
   }
 
+  getAlojamiento(id: number): Observable<Alojamiento | null> {
+    return this.getAlojamientos().pipe(
+      map((lista) => lista.find((a) => a.id === id) ?? null),
+    );
+  }
+
   getResenas(): Observable<Resena[]> {
     return this.http.get<MarketplaceData>(this.url).pipe(
       map((datos) => datos.resenas),

@@ -1,0 +1,57 @@
+<section class="mis-reservas-section">
+  <div class="reservas-container">
+    <h1 class="reservas-main-title">Mis reservas</h1>
+
+    @if (reservas.length === 0) {
+      <div class="reservas-vacias">
+        <i class="bi bi-calendar-x"></i>
+        <h2>Aún no tienes reservas</h2>
+        <p>Cuando reserves un alojamiento, aparecerá aquí.</p>
+      </div>
+    } @else {
+      <div class="reservas-lista">
+        @for (reserva of reservas; track reserva.id) {
+          <article class="reserva-card">
+            <img class="reserva-img" [src]="reserva.imagenUrl" [alt]="reserva.titulo">
+
+            <div class="reserva-info">
+              <h2 class="reserva-titulo">{{ reserva.titulo }}</h2>
+              <p class="reserva-ubicacion">{{ reserva.ubicacion }}</p>
+
+              <div class="reserva-detalles">
+                <p class="detalle-item">
+                  <i class="bi bi-calendar4-week detalle-icon"></i>
+                  <strong>Fechas:</strong> {{ formatoFecha(reserva.fechaInicio) }} – {{ formatoFecha(reserva.fechaFin) }}
+                </p>
+                <p class="detalle-item">
+                  <i class="bi bi-moon detalle-icon"></i>
+                  <strong>Duración:</strong> {{ reserva.noches }} {{ reserva.noches === 1 ? 'noche' : 'noches' }}
+                </p>
+                <p class="detalle-item">
+                  <i class="bi bi-people-fill detalle-icon"></i>
+                  <strong>Huéspedes:</strong> {{ reserva.huespedes }}
+                </p>
+              </div>
+
+              @if (reserva.subtotal !== undefined) {
+                <div class="detalle-cotizacion-guardada">
+                  <p><span>Subtotal</span><strong>{{ formatoPrecio(reserva.subtotal) }}</strong></p>
+                  <p><span>Tarifa de limpieza</span><strong>{{ formatoPrecio(reserva.tarifaLimpieza ?? 0) }}</strong></p>
+                  <p><span>Tarifa de servicio (10 %)</span><strong>{{ formatoPrecio(reserva.tarifaServicio ?? 0) }}</strong></p>
+                </div>
+              }
+
+              <div class="reserva-footer">
+                <span><strong>Total:</strong> {{ formatoPrecio(reserva.total) }}</span>
+                <span class="reserva-badge">
+                  <strong>Estado:</strong> {{ reserva.estado }}
+                  <span class="badge-icon-circle"><i class="bi bi-check-lg"></i></span>
+                </span>
+              </div>
+            </div>
+          </article>
+        }
+      </div>
+    }
+  </div>
+</section>

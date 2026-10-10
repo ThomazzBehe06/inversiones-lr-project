@@ -17,13 +17,13 @@ export class Alojamientoscomponent {
   resultados: Alojamiento[] = [];
   ciudades: string[] = [];
   tipos: string[] = [];
-  cargando: boolean = true;
-  error: boolean = false;
-  porPagina: number = 12;
-  paginaActual: number = 1;
+  cargando = true;
+  error = false;
+  porPagina = 12;
+  paginaActual = 1;
   filtros: Filtros = this.filtrosVacios();
-  opcionesCalificacion: number[] = [4.5, 4, 3.5];
-  menu: string = '';
+  opcionesCalificacion = [4.5, 4, 3.5];
+  menu = '';
   categorias = [
     { nombre: 'Urbano', imagen: 'assets/images/categoria-urbano.jpg' },
     { nombre: 'Playas', imagen: 'assets/images/categoria-playas.jpg' },
@@ -64,7 +64,6 @@ export class Alojamientoscomponent {
           this.filtros.precioMin = this.aNumero(params['precioMin']);
           this.filtros.precioMax = this.aNumero(params['precioMax']);
           this.filtros.calificacionMin = this.aNumero(params['calificacionMin']);
-
           this.buscar();
           this.cdr.detectChanges();
         });
@@ -107,15 +106,9 @@ export class Alojamientoscomponent {
 
   textoPrecio(): string {
     const { precioMin, precioMax } = this.filtros;
-    if (precioMin && precioMax) {
-      return this.formatoPrecio(precioMin) + ' – ' + this.formatoPrecio(precioMax);
-    }
-    if (precioMin) {
-      return 'Desde ' + this.formatoPrecio(precioMin);
-    }
-    if (precioMax) {
-      return 'Hasta ' + this.formatoPrecio(precioMax);
-    }
+    if (precioMin && precioMax) return `${this.formatoPrecio(precioMin)} – ${this.formatoPrecio(precioMax)}`;
+    if (precioMin) return 'Desde ' + this.formatoPrecio(precioMin);
+    if (precioMax) return 'Hasta ' + this.formatoPrecio(precioMax);
     return 'Añadir rango';
   }
 

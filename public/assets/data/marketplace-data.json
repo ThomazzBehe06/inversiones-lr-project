@@ -3,7 +3,7 @@
     {
       "id": 1,
       "nombre": "Loft moderno en Chapinero",
-      "descripcion": "Loft moderno ubicado cerca de restaurantes, cafés y zonas comerciales de Bogotá.",
+      "descripcion": "\"Loft moderno ubicado cerca de restaurantes, cafés y zonas comerciales de Bogotá.",
       "ciudad": "Bogotá",
       "ubicacion": "Chapinero, Bogotá",
       "tipo": "Apartamento",
@@ -18,27 +18,16 @@
       "calificacion": 4.8,
       "activo": true,
       "imagenPrincipal": "assets/images/loft-bogota.jpg",
-      "imagenes": [
-        "assets/images/loft-bogota.jpg",
-        "assets/images/loft-bogota-2.jpg"
-      ],
-      "servicios": [
-        "Wi-Fi",
-        "Cocina",
-        "Televisión",
-        "Lavadora"
-      ],
-      "reglas": [
-        "No fumar",
-        "No se permiten fiestas"
-      ],
+      "imagenes": ["assets/images/loft-bogota.jpg", "assets/images/loft-bogota-2.jpg"],
+      "servicios": ["Wi-Fi", "Cocina", "Televisión", "Lavadora"],
+      "reglas": ["No fumar", "No se permiten fiestas"],
       "latitud": 4.6486,
       "longitud": -74.0628
     },
     {
       "id": 2,
       "nombre": "Apartamento frente al mar",
-      "descripcion": "Apartamento con vista al mar ubicado en una zona turística de Cartagena.",
+      "descripcion": "Apartamento en Bocagrande con balcón y vista directa al mar Caribe. El edificio tiene piscina, parqueadero y aire acondicionado en todos los espacios, y la playa queda cruzando la calle. Perfecto para familias que quieren disfrutar Cartagena con total comodidad.",
       "ciudad": "Cartagena",
       "ubicacion": "Bocagrande, Cartagena",
       "tipo": "Apartamento",
@@ -74,7 +63,7 @@
     {
       "id": 3,
       "nombre": "Cabaña en Guatapé",
-      "descripcion": "Cabaña rodeada de naturaleza con vista al embalse de Guatapé.",
+      "descripcion": "Cabaña rodeada de naturaleza con vista al embalse de Guatapé y zona BBQ para compartir al aire libre. Está a pocos minutos de la Piedra del Peñol y del colorido pueblo de zócalos. Un plan ideal para desconectarse en familia o con amigos.",
       "ciudad": "Guatapé",
       "ubicacion": "Guatapé, Antioquia",
       "tipo": "Cabaña",
@@ -109,7 +98,7 @@
     {
       "id": 4,
       "nombre": "Casa colonial en Villa de Leyva",
-      "descripcion": "Casa de estilo colonial localizada cerca de la plaza principal.",
+      "descripcion": "Casa de estilo colonial con muros de tapia, patio interior y chimenea para las noches frías. Se encuentra a pocas cuadras de la Plaza Mayor, una de las más grandes de Colombia. Cuenta con parqueadero y espacio para grupos grandes.",
       "ciudad": "Villa de Leyva",
       "ubicacion": "Centro histórico",
       "tipo": "Casa",
@@ -144,7 +133,7 @@
     {
       "id": 5,
       "nombre": "Apartamento ejecutivo Medellín",
-      "descripcion": "Apartamento moderno cercano a zonas comerciales y empresariales.",
+      "descripcion": "Apartamento moderno cerca de las principales zonas comerciales y empresariales de Medellín. Tiene gimnasio en el edificio, cocina completa y Wi-Fi estable para trabajar. Una opción práctica para viajes de trabajo o escapadas cortas.",
       "ciudad": "Medellín",
       "ubicacion": "El Poblado, Medellín",
       "tipo": "Apartamento",
@@ -177,7 +166,7 @@
     {
       "id": 6,
       "nombre": "Casa campestre",
-      "descripcion": "Casa campestre actualmente fuera de servicio.",
+      "descripcion": "Casa campestre con piscina y zona BBQ en las afueras de Armenia. Actualmente se encuentra fuera de servicio y no recibe reservas.",
       "ciudad": "Armenia",
       "ubicacion": "Zona rural",
       "tipo": "Casa",
@@ -209,7 +198,7 @@
     {
       "id": 7,
       "nombre": "Apartamento con vista en Usaquén",
-      "descripcion": "Apartamento luminoso con balcón, a pocas cuadras del mercado de las pulgas y restaurantes de Usaquén.",
+      "descripcion": "Apartamento luminoso con balcón en el tradicional barrio de Usaquén. A pocas cuadras están el mercado de las pulgas de los domingos, restaurantes y parques. Incluye parqueadero y televisión para descansar después de recorrer la ciudad.",
       "ciudad": "Bogotá",
       "ubicacion": "Usaquén, Bogotá",
       "tipo": "Apartamento",
@@ -244,7 +233,7 @@
     {
       "id": 8,
       "nombre": "Estudio en Zona T",
-      "descripcion": "Estudio moderno ideal para viajes de trabajo, cerca de zona rosa y centros comerciales.",
+      "descripcion": "Estudio moderno pensado para viajes de trabajo, con cocina, lavadora y acceso a gimnasio. Está en plena Zona T, rodeado de centros comerciales, restaurantes y vida nocturna. Una base cómoda para conocer el norte de Bogotá.",
       "ciudad": "Bogotá",
       "ubicacion": "Zona T, Bogotá",
       "tipo": "Apartamento",
@@ -279,7 +268,7 @@
     {
       "id": 9,
       "nombre": "Casa familiar en La Candelaria",
-      "descripcion": "Casa tradicional restaurada en el centro histórico de Bogotá, cerca de museos y plazas.",
+      "descripcion": "Casa tradicional restaurada en el centro histórico de Bogotá, con chimenea y detalles coloniales. Puedes caminar hasta el Museo del Oro, la Plaza de Bolívar y el Chorro de Quevedo. Ideal para familias que quieren vivir la historia de la ciudad.",
       "ciudad": "Bogotá",
       "ubicacion": "La Candelaria, Bogotá",
       "tipo": "Casa",
@@ -313,7 +302,7 @@
     {
       "id": 10,
       "nombre": "Penthouse en El Poblado",
-      "descripcion": "Penthouse con terraza y jacuzzi en la zona más exclusiva de Medellín.",
+      "descripcion": "Penthouse con terraza privada y jacuzzi en El Poblado, la zona más exclusiva de Medellín. Cuenta con aire acondicionado, gimnasio y parqueadero. Restaurantes, bares y el Parque Lleras están a pocos minutos.",
       "ciudad": "Medellín",
       "ubicacion": "El Poblado, Medellín",
       "tipo": "Apartamento",
@@ -349,7 +338,7 @@
     {
       "id": 11,
       "nombre": "Loft artístico en Laureles",
-      "descripcion": "Loft rodeado de cafés y parques en uno de los barrios más caminables de Medellín.",
+      "descripcion": "Loft con decoración artística en Laureles, uno de los barrios más tranquilos y caminables de Medellín. Está rodeado de cafés, parques y la avenida 70. Perfecto para parejas que quieren vivir la ciudad como un local.",
       "ciudad": "Medellín",
       "ubicacion": "Laureles, Medellín",
       "tipo": "Apartamento",
@@ -382,7 +371,7 @@
     {
       "id": 12,
       "nombre": "Apartamento en Granada",
-      "descripcion": "Apartamento acogedor cerca del Parque del Perro y la vida nocturna de Cali.",
+      "descripcion": "Apartamento acogedor con aire acondicionado en el barrio Granada, muy cerca del Parque del Perro. Ideal para disfrutar la gastronomía y la salsa caleña. Tiene cocina equipada para quienes prefieren cocinar en casa.",
       "ciudad": "Cali",
       "ubicacion": "Granada, Cali",
       "tipo": "Apartamento",
@@ -416,7 +405,7 @@
     {
       "id": 13,
       "nombre": "Casa con piscina en Ciudad Jardín",
-      "descripcion": "Casa amplia con piscina privada para familias o grupos, en zona residencial segura.",
+      "descripcion": "Casa amplia con piscina privada en Ciudad Jardín, una zona residencial segura del sur de Cali. Tiene aire acondicionado, cocina completa y parqueadero. Ideal para familias o grupos que buscan espacio y tranquilidad.",
       "ciudad": "Cali",
       "ubicacion": "Ciudad Jardín, Cali",
       "tipo": "Casa",
@@ -452,7 +441,7 @@
     {
       "id": 14,
       "nombre": "Suite en el Centro Amurallado",
-      "descripcion": "Suite en una casa colonial dentro de la ciudad amurallada, a pasos de la Plaza de Santo Domingo.",
+      "descripcion": "Suite dentro de una casa colonial en la ciudad amurallada, a pasos de la Plaza de Santo Domingo. Combina techos altos y balcones de madera con aire acondicionado y cocina. Una experiencia romántica en el corazón histórico de Cartagena.",
       "ciudad": "Cartagena",
       "ubicacion": "Centro Histórico, Cartagena",
       "tipo": "Apartamento",
@@ -486,7 +475,7 @@
     {
       "id": 15,
       "nombre": "Casa colonial con patio en Getsemaní",
-      "descripcion": "Casa con patio interior y terraza en el barrio más animado de Cartagena.",
+      "descripcion": "Casa con patio interior, piscina y terraza en Getsemaní, el barrio más animado de Cartagena. Murales, plazas y restaurantes te esperan al salir por la puerta. Ideal para grupos que quieren vivir la noche cartagenera.",
       "ciudad": "Cartagena",
       "ubicacion": "Getsemaní, Cartagena",
       "tipo": "Casa",
@@ -521,7 +510,7 @@
     {
       "id": 16,
       "nombre": "Apartamento en Castillogrande",
-      "descripcion": "Apartamento familiar con acceso a zonas comunes y piscina, cerca de la playa.",
+      "descripcion": "Apartamento familiar en Castillogrande con acceso a piscina y zonas comunes, a pocos pasos de la playa. Es un sector tranquilo y residencial, con parqueadero incluido. Perfecto para descansar lejos del ruido sin alejarse del centro.",
       "ciudad": "Cartagena",
       "ubicacion": "Castillogrande, Cartagena",
       "tipo": "Apartamento",
@@ -556,7 +545,7 @@
     {
       "id": 17,
       "nombre": "Apartamento en El Rodadero",
-      "descripcion": "Apartamento a una cuadra de la playa, con balcón y vista parcial al mar.",
+      "descripcion": "Apartamento a una cuadra de la playa de El Rodadero, con balcón y vista parcial al mar. El edificio cuenta con piscina y parqueadero. Una excelente opción para familias que buscan sol y playa en Santa Marta.",
       "ciudad": "Santa Marta",
       "ubicacion": "El Rodadero, Santa Marta",
       "tipo": "Apartamento",
@@ -591,7 +580,7 @@
     {
       "id": 18,
       "nombre": "Cabaña ecológica en Taganga",
-      "descripcion": "Cabaña sencilla y fresca cerca de la bahía, ideal para buceo y senderismo.",
+      "descripcion": "Cabaña sencilla y fresca cerca de la bahía de Taganga, rodeada de vegetación. Es el punto de partida ideal para bucear, hacer senderismo o visitar el Parque Tayrona. Para viajeros que buscan una experiencia natural y económica.",
       "ciudad": "Santa Marta",
       "ubicacion": "Taganga, Santa Marta",
       "tipo": "Cabaña",
@@ -625,7 +614,7 @@
     {
       "id": 19,
       "nombre": "Casa frente al mar en Santa Marta",
-      "descripcion": "Casa con acceso directo a la playa, terraza y hamacas para descansar.",
+      "descripcion": "Casa con acceso directo a la playa, terraza, piscina y hamacas para descansar frente al mar. Tiene zona BBQ y parqueadero, pensada para grupos grandes. Despierta con el sonido de las olas en Santa Marta.",
       "ciudad": "Santa Marta",
       "ubicacion": "Pozos Colorados, Santa Marta",
       "tipo": "Casa",
@@ -661,7 +650,7 @@
     {
       "id": 20,
       "nombre": "Casa de playa en San Andrés",
-      "descripcion": "Casa a pasos del mar de los siete colores, con terraza y kayaks incluidos.",
+      "descripcion": "Casa a pasos del mar de los siete colores, con terraza, zona BBQ y kayaks incluidos. Tiene aire acondicionado y cocina completa. El lugar perfecto para vivir la isla de San Andrés en familia.",
       "ciudad": "San Andrés",
       "ubicacion": "San Luis, San Andrés",
       "tipo": "Casa",
@@ -696,7 +685,7 @@
     {
       "id": 21,
       "nombre": "Cabaña en Sound Bay",
-      "descripcion": "Cabaña tradicional isleña con jardín y vista a la bahía.",
+      "descripcion": "Cabaña tradicional isleña con jardín y vista a la bahía de Sound Bay, en la zona más tranquila de San Andrés. Cuenta con aire acondicionado y cocina. Ideal para quienes buscan playas menos concurridas.",
       "ciudad": "San Andrés",
       "ubicacion": "Sound Bay, San Andrés",
       "tipo": "Cabaña",
@@ -730,7 +719,7 @@
     {
       "id": 22,
       "nombre": "Apartamento en el Centro de San Andrés",
-      "descripcion": "Apartamento cómodo cerca de restaurantes, tiendas y la playa de Spratt Bight.",
+      "descripcion": "Apartamento cómodo en el centro de San Andrés, cerca de restaurantes, tiendas y la playa de Spratt Bight. Tiene aire acondicionado y televisión. Una opción práctica para moverse por la isla sin necesidad de transporte.",
       "ciudad": "San Andrés",
       "ubicacion": "Centro, San Andrés",
       "tipo": "Apartamento",
@@ -763,7 +752,7 @@
     {
       "id": 23,
       "nombre": "Cabaña en Tolú frente al golfo",
-      "descripcion": "Cabaña sencilla con hamacas y acceso a la playa en el golfo de Morrosquillo.",
+      "descripcion": "Cabaña sencilla con hamacas y acceso directo a la playa en el golfo de Morrosquillo. Tiene cocina y zona BBQ para disfrutar en grupo. Desde aquí salen los paseos a las islas de San Bernardo.",
       "ciudad": "Tolú",
       "ubicacion": "Playa Blanca, Tolú",
       "tipo": "Cabaña",
@@ -797,7 +786,7 @@
     {
       "id": 24,
       "nombre": "Finca cafetera en Salento",
-      "descripcion": "Finca rodeada de cafetales con vista al Valle del Cocora y desayuno típico.",
+      "descripcion": "Finca rodeada de cafetales con vista al Valle del Cocora y desayuno típico. Tiene chimenea, zona BBQ y parqueadero. Vive la cultura cafetera y camina entre las palmas de cera más altas del mundo.",
       "ciudad": "Salento",
       "ubicacion": "Valle del Cocora, Salento",
       "tipo": "Finca",
@@ -833,7 +822,7 @@
     {
       "id": 25,
       "nombre": "Cabaña en el bosque en Salento",
-      "descripcion": "Cabaña de madera entre guaduales, perfecta para una escapada en pareja.",
+      "descripcion": "Cabaña de madera entre guaduales, con chimenea y cocina, perfecta para una escapada en pareja. Está a pocos minutos del pueblo de Salento. Ideal para desconectarse y disfrutar del paisaje cafetero.",
       "ciudad": "Salento",
       "ubicacion": "Salento, Quindío",
       "tipo": "Cabaña",
@@ -867,7 +856,7 @@
     {
       "id": 26,
       "nombre": "Casa colonial en Barichara",
-      "descripcion": "Casa de piedra y teja con patio florido en el pueblo más lindo de Colombia.",
+      "descripcion": "Casa de piedra y teja con patio florido en Barichara, considerado el pueblo más lindo de Colombia. Cuenta con cocina y parqueadero. Recorre el Camino Real hasta Guane y disfruta sus calles empedradas.",
       "ciudad": "Barichara",
       "ubicacion": "Centro histórico, Barichara",
       "tipo": "Casa",
@@ -901,7 +890,7 @@
     {
       "id": 27,
       "nombre": "Casa de campo en Jardín",
-      "descripcion": "Casa campestre con vista a las montañas, a pocos minutos del parque principal.",
+      "descripcion": "Casa campestre con vista a las montañas, a pocos minutos del parque principal de Jardín. Tiene chimenea, zona BBQ y parqueadero. Un pueblo antioqueño lleno de color, café y tradición.",
       "ciudad": "Jardín",
       "ubicacion": "Vereda La Salada, Jardín",
       "tipo": "Casa",
@@ -937,7 +926,7 @@
     {
       "id": 28,
       "nombre": "Cabaña con vista al embalse",
-      "descripcion": "Cabaña con terraza y jacuzzi frente al embalse de Guatapé.",
+      "descripcion": "Cabaña con terraza y jacuzzi frente al embalse de Guatapé. Cuenta con cocina y parqueadero. Ideal para parejas o pequeños grupos que quieren un descanso con una vista espectacular.",
       "ciudad": "Guatapé",
       "ubicacion": "Vereda El Roble, Guatapé",
       "tipo": "Cabaña",
@@ -972,7 +961,7 @@
     {
       "id": 29,
       "nombre": "Glamping en Villa de Leyva",
-      "descripcion": "Domo con cama king y vista al cielo estrellado, a diez minutos de la plaza.",
+      "descripcion": "Domo de glamping con cama king, jacuzzi y vista al cielo estrellado, a diez minutos de la plaza de Villa de Leyva. El desayuno está incluido. Una experiencia diferente para celebrar en pareja.",
       "ciudad": "Villa de Leyva",
       "ubicacion": "Vereda Sopotá, Villa de Leyva",
       "tipo": "Cabaña",
@@ -1006,7 +995,7 @@
     {
       "id": 30,
       "nombre": "Finca con piscina en Armenia",
-      "descripcion": "Finca para grupos con piscina, zona BBQ y amplias zonas verdes.",
+      "descripcion": "Finca para grupos grandes con piscina, zona BBQ y amplias zonas verdes en Armenia. Tiene cocina completa, Wi-Fi y parqueadero. Perfecta para reuniones familiares cerca de los parques temáticos del Quindío.",
       "ciudad": "Armenia",
       "ubicacion": "Vía Calarcá, Armenia",
       "tipo": "Finca",
@@ -1042,7 +1031,7 @@
     {
       "id": 31,
       "nombre": "Casa en Sopó (en remodelación)",
-      "descripcion": "Casa campestre cerca de Bogotá, temporalmente fuera de servicio.",
+      "descripcion": "Casa campestre con chimenea cerca de Bogotá. Se encuentra temporalmente fuera de servicio por remodelación.",
       "ciudad": "Sopó",
       "ubicacion": "Sopó, Cundinamarca",
       "tipo": "Casa",
