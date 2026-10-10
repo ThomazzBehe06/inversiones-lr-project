@@ -8,6 +8,10 @@ export interface Reserva {
   fechaFin: string;
   noches: number;
   huespedes: number;
+  precioNoche?: number;
+  subtotal?: number;
+  tarifaLimpieza?: number;
+  tarifaServicio?: number;
   total: number;
   estado: string;
   imagenUrl: string;

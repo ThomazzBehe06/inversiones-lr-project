@@ -173,7 +173,7 @@
             </div>
             <div class="acciones-alojamiento">
               <a class="btn btn-outline-primary" [routerLink]="['/alojamientos', alojamiento.id]">Ver más</a>
-              <button type="button" class="btn btn-lr" (click)="abrirReserva(alojamiento)">Reservar</button>
+              <a class="btn btn-lr" [routerLink]="['/alojamientos', alojamiento.id]" fragment="cotizacion">Reservar</a>
             </div>
           </article>
         </div>
@@ -202,39 +202,5 @@
         </button>
       </nav>
     }
-  }
-
-  @if (alojamientoParaReservar; as alojamiento) {
-    <div class="reserva-overlay" role="presentation" (click)="cerrarReserva()">
-      <section class="reserva-dialog" role="dialog" aria-modal="true" aria-labelledby="titulo-reserva"
-               (click)="$event.stopPropagation()">
-        <button type="button" class="cerrar-dialogo" aria-label="Cerrar" (click)="cerrarReserva()">&times;</button>
-        <h2 id="titulo-reserva">Reservar alojamiento</h2>
-        <p class="reserva-dialog-nombre">{{ alojamiento.nombre }}</p>
-        <form (ngSubmit)="confirmarReserva()">
-          <label for="fecha-llegada">Fecha de llegada</label>
-          <input id="fecha-llegada" type="date" name="fechaLlegada" [min]="fechaMinimaLlegada"
-                 [(ngModel)]="fechaLlegada" (ngModelChange)="actualizarFechaLlegada()" required>
-
-          <label for="fecha-salida">Fecha de salida</label>
-          <input id="fecha-salida" type="date" name="fechaSalida" [min]="fechaMinimaSalida"
-                 [(ngModel)]="fechaSalida" required>
-
-          <label for="huespedes-reserva">Huéspedes</label>
-          <input id="huespedes-reserva" type="number" name="huespedesReserva" min="1"
-                 [max]="alojamiento.capacidad" [(ngModel)]="huespedesReserva" required>
-          <small>Máximo {{ alojamiento.capacidad }} huéspedes · {{ formatoPrecio(alojamiento.precioNoche) }} por noche</small>
-
-          @if (errorReserva) {
-            <p class="error-reserva" role="alert">{{ errorReserva }}</p>
-          }
-
-          <div class="acciones-dialogo">
-            <button type="button" class="btn btn-outline-secondary" (click)="cerrarReserva()">Cancelar</button>
-            <button type="submit" class="btn btn-lr">Confirmar reserva</button>
-          </div>
-        </form>
-      </section>
-    </div>
   }
 </section>

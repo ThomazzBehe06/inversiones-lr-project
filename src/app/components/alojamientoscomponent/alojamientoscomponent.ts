@@ -1,8 +1,7 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { AlojamientoService } from '../../services/alojamiento.service';
-import { Reservas } from '../../services/reservas';
 import { Alojamiento } from '../../models/alojamiento';
 import { Filtros } from '../../models/filtros';
 
@@ -17,18 +16,13 @@ export class Alojamientoscomponent {
   resultados: Alojamiento[] = [];
   ciudades: string[] = [];
   tipos: string[] = [];
-  cargando: boolean = true;
-  error: boolean = false;
-  porPagina: number = 12;
-  paginaActual: number = 1;
+  cargando = true;
+  error = false;
+  porPagina = 12;
+  paginaActual = 1;
   filtros: Filtros = this.filtrosVacios();
-  opcionesCalificacion: number[] = [4.5, 4, 3.5];
-  menu: string = '';
-  alojamientoParaReservar: Alojamiento | null = null;
-  fechaLlegada = this.fechaManana();
-  fechaSalida = this.fechaSiguiente(this.fechaLlegada);
-  huespedesReserva = 1;
-  errorReserva = '';
+  opcionesCalificacion = [4.5, 4, 3.5];
+  menu = '';
   categorias = [
     { nombre: 'Urbano', imagen: 'assets/images/categoria-urbano.jpg' },
     { nombre: 'Playas', imagen: 'assets/images/categoria-playas.jpg' },
@@ -46,8 +40,6 @@ export class Alojamientoscomponent {
 
   constructor(
     private alojamientoService: AlojamientoService,
-    private reservasService: Reservas,
-    private router: Router,
     private route: ActivatedRoute,
     private cdr: ChangeDetectorRef,
   ) {}
@@ -70,7 +62,6 @@ export class Alojamientoscomponent {
           this.filtros.precioMin = this.aNumero(params['precioMin']);
           this.filtros.precioMax = this.aNumero(params['precioMax']);
           this.filtros.calificacionMin = this.aNumero(params['calificacionMin']);
-
           this.buscar();
           this.cdr.detectChanges();
         });
@@ -111,106 +102,11 @@ export class Alojamientoscomponent {
     return '$' + valor.toLocaleString('es-CO');
   }
 
-  abrirReserva(alojamiento: Alojamiento): void {
-    this.alojamientoParaReservar = alojamiento;
-    this.fechaLlegada = this.fechaManana();
-    this.fechaSalida = this.fechaSiguiente(this.fechaLlegada);
-    this.huespedesReserva = 1;
-    this.errorReserva = '';
-  }
-
-  cerrarReserva(): void {
-    this.alojamientoParaReservar = null;
-    this.errorReserva = '';
-  }
-
-  actualizarFechaLlegada(): void {
-    if (this.fechaSalida <= this.fechaLlegada) {
-      this.fechaSalida = this.fechaSiguiente(this.fechaLlegada);
-    }
-  }
-
-  confirmarReserva(): void {
-    const alojamiento = this.alojamientoParaReservar;
-    if (!alojamiento) return;
-
-    const noches = this.diferenciaEnDias(this.fechaLlegada, this.fechaSalida);
-    if (noches < 1) {
-      this.errorReserva = 'La fecha de salida debe ser posterior a la fecha de llegada.';
-      return;
-    }
-    if (this.huespedesReserva < 1 || this.huespedesReserva > alojamiento.capacidad) {
-      this.errorReserva = `Este alojamiento permite de 1 a ${alojamiento.capacidad} huéspedes.`;
-      return;
-    }
-
-    this.reservasService.guardarReserva({
-      id: globalThis.crypto?.randomUUID?.() ?? `${Date.now()}-${alojamiento.id}`,
-      titulo: alojamiento.nombre,
-      ubicacion: alojamiento.ubicacion || alojamiento.ciudad,
-      fechaInicio: this.fechaLlegada,
-      fechaFin: this.fechaSalida,
-      noches,
-      huespedes: this.huespedesReserva,
-      total: alojamiento.precioNoche * noches + alojamiento.tarifaLimpieza,
-      estado: 'CONFIRMADA',
-      imagenUrl: alojamiento.imagenPrincipal,
-    });
-
-    this.cerrarReserva();
-    void this.router.navigate(['/reservas']);
-  }
-
-  get fechaMinimaSalida(): string {
-    return this.fechaSiguiente(this.fechaLlegada);
-  }
-
-  get fechaMinimaLlegada(): string {
-    return this.fechaManana();
-  }
-
-  private fechaManana(): string {
-    const manana = new Date();
-    manana.setDate(manana.getDate() + 1);
-    return this.fechaComoTexto(manana);
-  }
-
-  private fechaSiguiente(fecha: string): string {
-    const siguiente = this.fechaDesdeTexto(fecha);
-    siguiente.setDate(siguiente.getDate() + 1);
-    return this.fechaComoTexto(siguiente);
-  }
-
-  private diferenciaEnDias(inicio: string, fin: string): number {
-    return Math.round(
-      (this.fechaDesdeTexto(fin).getTime() - this.fechaDesdeTexto(inicio).getTime()) /
-        (24 * 60 * 60 * 1000),
-    );
-  }
-
-  private fechaDesdeTexto(fecha: string): Date {
-    const [anio, mes, dia] = fecha.split('-').map(Number);
-    return new Date(anio, mes - 1, dia);
-  }
-
-  private fechaComoTexto(fecha: Date): string {
-    const anio = fecha.getFullYear();
-    const mes = String(fecha.getMonth() + 1).padStart(2, '0');
-    const dia = String(fecha.getDate()).padStart(2, '0');
-    return `${anio}-${mes}-${dia}`;
-  }
-
   textoPrecio(): string {
     const { precioMin, precioMax } = this.filtros;
-    if (precioMin && precioMax) {
-      return this.formatoPrecio(precioMin) + ' – ' + this.formatoPrecio(precioMax);
-    }
-    if (precioMin) {
-      return 'Desde ' + this.formatoPrecio(precioMin);
-    }
-    if (precioMax) {
-      return 'Hasta ' + this.formatoPrecio(precioMax);
-    }
+    if (precioMin && precioMax) return `${this.formatoPrecio(precioMin)} – ${this.formatoPrecio(precioMax)}`;
+    if (precioMin) return 'Desde ' + this.formatoPrecio(precioMin);
+    if (precioMax) return 'Hasta ' + this.formatoPrecio(precioMax);
     return 'Añadir rango';
   }
 

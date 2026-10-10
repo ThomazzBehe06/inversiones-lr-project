@@ -33,6 +33,14 @@
                 </p>
               </div>
 
+              @if (reserva.subtotal !== undefined) {
+                <div class="detalle-cotizacion-guardada">
+                  <p><span>Subtotal</span><strong>{{ formatoPrecio(reserva.subtotal) }}</strong></p>
+                  <p><span>Tarifa de limpieza</span><strong>{{ formatoPrecio(reserva.tarifaLimpieza ?? 0) }}</strong></p>
+                  <p><span>Tarifa de servicio (10 %)</span><strong>{{ formatoPrecio(reserva.tarifaServicio ?? 0) }}</strong></p>
+                </div>
+              }
+
               <div class="reserva-footer">
                 <span><strong>Total:</strong> {{ formatoPrecio(reserva.total) }}</span>
                 <span class="reserva-badge">
