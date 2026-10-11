@@ -15,7 +15,10 @@
 
           <div class="reserva-info">
             <h2 class="reserva-titulo">{{ reserva.titulo }}</h2>
-            <p class="reserva-ubicacion">{{ reserva.ubicacion }}</p>
+            <p class="reserva-ubicacion">{{ reserva.ubicacion }}@if (reserva.ciudad && !reserva.ubicacion.includes(reserva.ciudad)) {, {{ reserva.ciudad }}}</p>
+            @if (reserva.nombreHuesped) {
+              <p class="reserva-ubicacion"><i class="bi bi-person"></i> {{ reserva.nombreHuesped }} · {{ reserva.correo }}</p>
+            }
 
             <div class="reserva-detalles">
               <p class="detalle-item">

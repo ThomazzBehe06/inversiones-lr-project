@@ -1,6 +1,7 @@
 .foto-principal {
   height: clamp(260px, 45vw, 500px);
   object-fit: cover;
+  background-color: #e8edf6;
 }
 
 .miniatura {
@@ -8,6 +9,8 @@
   height: 68px;
   overflow: hidden;
   border: 2px solid transparent;
+  background-color: #e8edf6;
+  cursor: pointer;
 }
 
 .miniatura.seleccionada {
@@ -22,4 +25,67 @@
 
 .sticky-lg-top {
   top: 1rem;
+}
+
+.dato-caja {
+  padding: 1rem 0.5rem;
+  border: 1px solid #e3e7ef;
+  border-radius: 10px;
+  background-color: #fff;
+  font-size: 0.9rem;
+  color: var(--lr-texto);
+}
+
+.dato-caja .bi {
+  color: var(--lr-azul);
+}
+
+.estrella {
+  color: #d99a00;
+  font-weight: 600;
+}
+
+.resena {
+  display: flex;
+  gap: 0.9rem;
+  padding: 1rem;
+  border-radius: 10px;
+  background-color: var(--lr-gris-fondo);
+}
+
+.avatar {
+  display: grid;
+  flex: 0 0 42px;
+  height: 42px;
+  place-items: center;
+  border-radius: 50%;
+  background-color: var(--lr-azul);
+  color: #fff;
+  font-family: var(--fuente-titulos);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.estado {
+  padding: 2.5rem 1rem;
+  border-radius: 10px;
+  background-color: var(--lr-gris-fondo);
+  color: var(--lr-texto-suave);
+  text-align: center;
+}
+
+.estado .bi {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 2rem;
+}
+
+.form-control:focus {
+  border-color: var(--lr-turquesa);
+  box-shadow: 0 0 0 3px rgb(109 186 192 / 0.25);
+}
+
+.formulario-reserva {
+  padding-top: 1rem;
+  border-top: 1px solid #e3e7ef;
 }
