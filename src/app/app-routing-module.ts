@@ -4,6 +4,7 @@ import { Iniciocomponent } from './components/iniciocomponent/iniciocomponent';
 import { Alojamientoscomponent } from './components/alojamientoscomponent/alojamientoscomponent';
 import { Detallealojamientocomponent } from './components/detallealojamientocomponent/detallealojamientocomponent';
 import { Reservascomponent } from './components/reservascomponent/reservascomponent';
+import { Logincomponent } from './components/logincomponent/logincomponent';
 
 const routes: Routes = [
   { path: '', redirectTo: 'inicio', pathMatch: 'full' },
@@ -11,6 +12,7 @@ const routes: Routes = [
   { path: 'alojamientos/:id', component: Detallealojamientocomponent },
   { path: 'alojamientos', component: Alojamientoscomponent },
   { path: 'reservas', component: Reservascomponent },
+  { path: 'login', component: Logincomponent },
 ];
 
 @NgModule({

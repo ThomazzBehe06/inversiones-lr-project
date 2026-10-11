@@ -59,6 +59,34 @@
         }
       </div>
 
+      <div class="cuenta">
+        @if (!sesionService.logueado()) {
+          <a class="cuenta-boton" routerLink="/login" (click)="cerrarMenu()">
+            <i class="bi bi-person-circle"></i>
+            <span>Iniciar sesión</span>
+          </a>
+        } @else {
+          @if (menuCuenta) {
+            <div class="fondo-menu" (click)="cerrarMenuCuenta()"></div>
+          }
+
+          <button type="button" class="cuenta-boton" (click)="alternarMenuCuenta()">
+            <i class="bi bi-person-circle"></i>
+            <span>{{ sesionService.usuarioActual().nombre }}</span>
+            <i class="bi bi-chevron-down flecha"></i>
+          </button>
+
+          @if (menuCuenta) {
+            <div class="cuenta-menu">
+              <p class="cuenta-nombre">{{ sesionService.usuarioActual().nombre }}</p>
+              <p class="cuenta-correo">{{ sesionService.usuarioActual().correo }}</p>
+              <hr>
+              <button type="button" class="cuenta-cerrar" (click)="cerrarSesion()">Cerrar sesión</button>
+            </div>
+          }
+        }
+      </div>
+
     </div>
   </div>
 </nav>

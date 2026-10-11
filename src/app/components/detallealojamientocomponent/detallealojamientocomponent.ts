@@ -5,6 +5,7 @@ import { catchError, map, of, switchMap } from 'rxjs';
 import { AlojamientoService } from '../../services/alojamiento.service';
 import { Reservas } from '../../services/reservas';
 import { MonedaService } from '../../services/moneda.service';
+import { SesionService } from '../../services/sesion.service';
 
 const TARIFA_SERVICIO = 0.1;
 
@@ -28,6 +29,7 @@ export class Detallealojamientocomponent {
   private reservasService = inject(Reservas);
   private router = inject(Router);
   monedaService = inject(MonedaService);
+  sesionService = inject(SesionService);
 
 
   private datos = toSignal(
@@ -92,6 +94,11 @@ export class Detallealojamientocomponent {
     const alojamiento = this.alojamiento();
     const cotizacion = this.cotizacion();
     if (!alojamiento || !cotizacion) return;
+
+    if (!this.sesionService.logueado()) {
+      void this.router.navigate(['/login'], { queryParams: { volver: this.router.url } });
+      return;
+    }
 
     this.reservasService.guardarReserva({
       id: crypto.randomUUID(),

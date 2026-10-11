@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { MonedaService } from '../../services/moneda.service';
+import { SesionService } from '../../services/sesion.service';
 import { Moneda } from '../../models/moneda';
 
 @Component({
@@ -13,8 +14,13 @@ import { Moneda } from '../../models/moneda';
 export class Navbarcomponent {
   menuAbierto: boolean = false;
   menuMoneda: boolean = false;
+  menuCuenta: boolean = false;
 
-  constructor(private router: Router, public monedaService: MonedaService) {}
+  constructor(
+    private router: Router,
+    public monedaService: MonedaService,
+    public sesionService: SesionService,
+  ) {}
 
   alternarMenu(): void {
     this.menuAbierto = !this.menuAbierto;
@@ -48,5 +54,20 @@ export class Navbarcomponent {
 
   porCodigo(indice: number, m: Moneda): string {
     return m.codigo;
+  }
+
+  alternarMenuCuenta(): void {
+    this.menuCuenta = !this.menuCuenta;
+  }
+
+  cerrarMenuCuenta(): void {
+    this.menuCuenta = false;
+  }
+
+  cerrarSesion(): void {
+    this.sesionService.cerrarSesion();
+    this.menuCuenta = false;
+    this.cerrarMenu();
+    void this.router.navigate(['/inicio']);
   }
 }
