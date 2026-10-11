@@ -69,6 +69,18 @@
           </ul>
         </section>
 
+        <section class="mb-4" id="ubicacion">
+          <h2 class="h4">Ubicación</h2>
+          @if (a.latitud != null && a.longitud != null) {
+            <app-mapaubicacioncomponent [latitud]="a.latitud" [longitud]="a.longitud" [titulo]="a.nombre"
+                                        [direccion]="a.ubicacion + ', ' + a.ciudad"></app-mapaubicacioncomponent>
+          } @else {
+            <div class="estado">
+              <i class="bi bi-map"></i>
+              <p class="mb-0">El mapa de este alojamiento no está disponible.<br>{{ a.ubicacion }}, {{ a.ciudad }}</p>
+            </div>
+          }
+        </section>
         <section id="resenas">
           <div class="d-flex justify-content-between align-items-center mb-3">
             <h2 class="h4 mb-0">Reseñas</h2>

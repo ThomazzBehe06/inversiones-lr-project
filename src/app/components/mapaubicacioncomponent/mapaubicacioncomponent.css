@@ -1,0 +1,13 @@
+.mapa-contenedor {
+  position: relative;
+  z-index: 0;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgb(0 0 0 / 0.12);
+}
+
+.mapa {
+  height: clamp(260px, 40vw, 360px);
+  background-color: #e8edf6;
+}
