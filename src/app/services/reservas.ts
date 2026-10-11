@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
+import { SesionService } from './sesion.service';
 
 export interface Reserva {
   id: string;
@@ -19,13 +20,18 @@ export interface Reserva {
 
 @Injectable({ providedIn: 'root' })
 export class Reservas {
-  private readonly claveAlmacenamiento = 'inversiones-lr-reservas';
+  private sesionService = inject(SesionService);
+  private readonly prefijoClave = 'inversiones-lr-reservas:';
 
   obtenerReservas(): Reserva[] {
-    if (typeof localStorage === 'undefined') return [];
+    const clave = this.claveUsuario();
+
+    if (!clave) {
+      return [];
+    }
 
     try {
-      const guardadas = localStorage.getItem(this.claveAlmacenamiento);
+      const guardadas = localStorage.getItem(clave);
       return guardadas ? (JSON.parse(guardadas) as Reserva[]) : [];
     } catch {
       return [];
@@ -33,7 +39,18 @@ export class Reservas {
   }
 
   guardarReserva(reserva: Reserva): void {
+    const clave = this.claveUsuario();
+
+    if (!clave) {
+      return;
+    }
+
     const reservas = this.obtenerReservas();
-    localStorage.setItem(this.claveAlmacenamiento, JSON.stringify([reserva, ...reservas]));
+    localStorage.setItem(clave, JSON.stringify([reserva, ...reservas]));
+  }
+
+  private claveUsuario(): string {
+    const correo = this.sesionService.usuarioActual().correo.toLowerCase();
+    return correo ? this.prefijoClave + correo : '';
   }
 }
