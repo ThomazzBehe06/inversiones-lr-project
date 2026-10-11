@@ -3,7 +3,9 @@ import { SesionService } from './sesion.service';
 
 export interface Reserva {
   id: string;
+  alojamientoId?: number;
   titulo: string;
+  ciudad?: string;
   ubicacion: string;
   fechaInicio: string;
   fechaFin: string;
@@ -14,6 +16,8 @@ export interface Reserva {
   tarifaLimpieza?: number;
   tarifaServicio?: number;
   total: number;
+  nombreHuesped?: string;
+  correo?: string;
   estado: string;
   imagenUrl: string;
 }
