@@ -145,8 +145,9 @@ export class Detallealojamientocomponent {
     const cotizacion = this.cotizacion();
     if (!alojamiento || !cotizacion || this.errorNombre() || this.errorCorreo()) return;
 
+    const idReserva = this.generarId();
     this.reservasService.guardarReserva({
-      id: this.generarId(),
+      id: idReserva,
       alojamientoId: alojamiento.id,
       titulo: alojamiento.nombre,
       ciudad: alojamiento.ciudad,
@@ -161,7 +162,7 @@ export class Detallealojamientocomponent {
       estado: 'CONFIRMADA',
       imagenUrl: alojamiento.imagenPrincipal,
     });
-    void this.router.navigate(['/reservas']);
+    void this.router.navigate(['/reservas'], { state: { nuevaReserva: idReserva } });
   }
 
   formatoPrecio(valor: number): string {

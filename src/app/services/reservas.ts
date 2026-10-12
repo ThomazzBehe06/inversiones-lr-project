@@ -40,4 +40,9 @@ export class Reservas {
     const reservas = this.obtenerReservas();
     localStorage.setItem(this.claveAlmacenamiento, JSON.stringify([reserva, ...reservas]));
   }
+
+  eliminarReserva(id: string): void {
+    const restantes = this.obtenerReservas().filter((reserva) => reserva.id !== id);
+    localStorage.setItem(this.claveAlmacenamiento, JSON.stringify(restantes));
+  }
 }

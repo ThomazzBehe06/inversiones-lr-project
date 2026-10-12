@@ -132,3 +132,31 @@
     flex-direction: column;
   }
 }
+
+.reserva-nueva {
+  border-color: #187443;
+  box-shadow: 0 0 0 3px rgb(24 116 67 / 0.18);
+}
+
+.reserva-codigo {
+  color: #718096;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.reserva-acciones {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 0.9rem;
+}
+
+.confirmar-texto {
+  margin-right: auto;
+  color: #b02a37;
+  font-weight: 600;
+  font-size: 0.9rem;
+}

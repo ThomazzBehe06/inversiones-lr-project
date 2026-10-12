@@ -11,6 +11,9 @@ import { MonedaService } from '../../services/moneda.service';
 
 export class Reservascomponent implements OnInit {
   reservas: Reserva[] = [];
+  nuevaReservaId: string | null = null;
+  reservaPorEliminar: string | null = null;
+  mensajeEliminada = false;
 
   constructor(
     private reservasService: Reservas,
@@ -19,6 +22,32 @@ export class Reservascomponent implements OnInit {
 
   ngOnInit(): void {
     this.reservas = this.reservasService.obtenerReservas();
+
+    const { nuevaReserva, ...resto } = history.state ?? {};
+    if (typeof nuevaReserva === 'string' && this.reservas.some((r) => r.id === nuevaReserva)) {
+      this.nuevaReservaId = nuevaReserva;
+      history.replaceState(resto, '');
+    }
+  }
+
+  pedirConfirmacion(id: string): void {
+    this.reservaPorEliminar = id;
+  }
+
+  cancelarEliminacion(): void {
+    this.reservaPorEliminar = null;
+  }
+
+  eliminarReserva(id: string): void {
+    this.reservasService.eliminarReserva(id);
+    this.reservas = this.reservasService.obtenerReservas();
+    this.reservaPorEliminar = null;
+    this.nuevaReservaId = null;
+    this.mensajeEliminada = true;
+  }
+
+  codigoReserva(id: string): string {
+    return id.slice(0, 8).toUpperCase();
   }
 
   formatoFecha(fecha: string): string {
