@@ -2,6 +2,21 @@
   <div class="reservas-container">
     <h1 class="reservas-main-title">Mis reservas</h1>
 
+    @if (nuevaReservaId) {
+      <div class="alert alert-success d-flex align-items-center gap-2" role="status">
+        <i class="bi bi-check-circle-fill"></i>
+        <span>¡Tu reserva fue confirmada! Aquí están los detalles.</span>
+      </div>
+    }
+
+    @if (mensajeEliminada) {
+      <div class="alert alert-secondary d-flex align-items-center gap-2" role="status">
+        <i class="bi bi-trash3"></i>
+        <span class="flex-grow-1">La reserva fue eliminada.</span>
+        <button type="button" class="btn-close" aria-label="Cerrar mensaje" (click)="mensajeEliminada = false"></button>
+      </div>
+    }
+
     @if (reservas.length === 0) {
       <div class="reservas-vacias">
         <i class="bi bi-calendar-x"></i>
@@ -10,45 +25,74 @@
       </div>
     } @else {
       <div class="reservas-lista">
-        <article class="reserva-card" *ngFor="let reserva of reservas">
-          <img class="reserva-img" [src]="reserva.imagenUrl" [alt]="reserva.titulo">
+        @for (reserva of reservas; track reserva.id) {
+          <article class="reserva-card" [class.reserva-nueva]="reserva.id === nuevaReservaId">
+            <img class="reserva-img" [src]="reserva.imagenUrl" [alt]="reserva.titulo">
 
-          <div class="reserva-info">
-            <h2 class="reserva-titulo">{{ reserva.titulo }}</h2>
-            <p class="reserva-ubicacion">{{ reserva.ubicacion }}</p>
+            <div class="reserva-info">
+              <small class="reserva-codigo">Reserva #{{ codigoReserva(reserva.id) }}</small>
+              <h2 class="reserva-titulo">{{ reserva.titulo }}</h2>
+              <p class="reserva-ubicacion">
+                <i class="bi bi-geo-alt-fill"></i>
+                {{ reserva.ubicacion }}@if (reserva.ciudad && !reserva.ubicacion.includes(reserva.ciudad)) {, {{ reserva.ciudad }}}
+              </p>
 
-            <div class="reserva-detalles">
-              <p class="detalle-item">
-                <i class="bi bi-calendar4-week detalle-icon"></i>
-                <strong>Fechas:</strong> {{ formatoFecha(reserva.fechaInicio) }} – {{ formatoFecha(reserva.fechaFin) }}
-              </p>
-              <p class="detalle-item">
-                <i class="bi bi-moon detalle-icon"></i>
-                <strong>Duración:</strong> {{ reserva.noches }} {{ reserva.noches === 1 ? 'noche' : 'noches' }}
-              </p>
-              <p class="detalle-item">
-                <i class="bi bi-people-fill detalle-icon"></i>
-                <strong>Huéspedes:</strong> {{ reserva.huespedes }}
-              </p>
-            </div>
-
-            @if (reserva.subtotal !== undefined) {
-              <div class="detalle-cotizacion-guardada">
-                <p><span>Subtotal</span><strong>{{ formatoPrecio(reserva.subtotal) }}</strong></p>
-                <p><span>Tarifa de limpieza</span><strong>{{ formatoPrecio(reserva.tarifaLimpieza ?? 0) }}</strong></p>
-                <p><span>Tarifa de servicio (10 %)</span><strong>{{ formatoPrecio(reserva.tarifaServicio ?? 0) }}</strong></p>
+              <div class="reserva-detalles">
+                <p class="detalle-item">
+                  <i class="bi bi-calendar4-week detalle-icon"></i>
+                  <strong>Fechas:</strong> {{ formatoFecha(reserva.fechaInicio) }} – {{ formatoFecha(reserva.fechaFin) }}
+                </p>
+                <p class="detalle-item">
+                  <i class="bi bi-moon detalle-icon"></i>
+                  <strong>Duración:</strong> {{ reserva.noches }} {{ reserva.noches === 1 ? 'noche' : 'noches' }}
+                </p>
+                <p class="detalle-item">
+                  <i class="bi bi-people-fill detalle-icon"></i>
+                  <strong>Huéspedes:</strong> {{ reserva.huespedes }}
+                </p>
+                @if (reserva.nombreHuesped) {
+                  <p class="detalle-item">
+                    <i class="bi bi-person-fill detalle-icon"></i>
+                    <strong>A nombre de:</strong> {{ reserva.nombreHuesped }}
+                    @if (reserva.correo) { · {{ reserva.correo }} }
+                  </p>
+                }
               </div>
-            }
 
-            <div class="reserva-footer">
-              <span><strong>Total:</strong> {{ formatoPrecio(reserva.total) }}</span>
-              <span class="reserva-badge">
-                <strong>Estado:</strong> {{ reserva.estado }}
-                <span class="badge-icon-circle"><i class="bi bi-check-lg"></i></span>
-              </span>
+              @if (reserva.subtotal !== undefined) {
+                <div class="detalle-cotizacion-guardada">
+                  <p><span>Subtotal</span><strong>{{ formatoPrecio(reserva.subtotal) }}</strong></p>
+                  <p><span>Tarifa de limpieza</span><strong>{{ formatoPrecio(reserva.tarifaLimpieza ?? 0) }}</strong></p>
+                  <p><span>Tarifa de servicio (10 %)</span><strong>{{ formatoPrecio(reserva.tarifaServicio ?? 0) }}</strong></p>
+                </div>
+              }
+
+              <div class="reserva-footer">
+                <span><strong>Total:</strong> {{ formatoPrecio(reserva.total) }}</span>
+                <span class="reserva-badge">
+                  <strong>Estado:</strong> {{ reserva.estado }}
+                  <span class="badge-icon-circle"><i class="bi bi-check-lg"></i></span>
+                </span>
+              </div>
+
+              <div class="reserva-acciones">
+                @if (reservaPorEliminar === reserva.id) {
+                  <span class="confirmar-texto">¿Seguro que quieres eliminar esta reserva?</span>
+                  <button type="button" class="btn btn-sm btn-danger" (click)="eliminarReserva(reserva.id)">
+                    Sí, eliminar
+                  </button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary" (click)="cancelarEliminacion()">
+                    No, conservar
+                  </button>
+                } @else {
+                  <button type="button" class="btn btn-sm btn-outline-danger" (click)="pedirConfirmacion(reserva.id)">
+                    <i class="bi bi-trash3"></i> Eliminar reserva
+                  </button>
+                }
+              </div>
             </div>
-          </div>
-        </article>
+          </article>
+        }
       </div>
     }
   </div>

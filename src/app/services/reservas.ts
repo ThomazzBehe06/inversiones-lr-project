@@ -3,7 +3,9 @@ import { SesionService } from './sesion.service';
 
 export interface Reserva {
   id: string;
+  alojamientoId?: number;
   titulo: string;
+  ciudad?: string;
   ubicacion: string;
   fechaInicio: string;
   fechaFin: string;
@@ -14,6 +16,8 @@ export interface Reserva {
   tarifaLimpieza?: number;
   tarifaServicio?: number;
   total: number;
+  nombreHuesped?: string;
+  correo?: string;
   estado: string;
   imagenUrl: string;
 }
@@ -52,5 +56,10 @@ export class Reservas {
   private claveUsuario(): string {
     const correo = this.sesionService.usuarioActual().correo.toLowerCase();
     return correo ? this.prefijoClave + correo : '';
+  }
+
+  eliminarReserva(id: string): void {
+    const restantes = this.obtenerReservas().filter((reserva) => reserva.id !== id);
+    localStorage.setItem(this.claveAlmacenamiento, JSON.stringify(restantes));
   }
 }
