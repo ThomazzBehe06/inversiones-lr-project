@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Reserva, Reservas } from '../../services/reservas';
 import { MonedaService } from '../../services/moneda.service';
+import { SesionService } from '../../services/sesion.service';
 
 @Component({
   selector: 'app-reservascomponent',
@@ -18,9 +20,16 @@ export class Reservascomponent implements OnInit {
   constructor(
     private reservasService: Reservas,
     private monedaService: MonedaService,
+    private sesionService: SesionService,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
+    if (!this.sesionService.logueado()) {
+      void this.router.navigate(['/login'], { queryParams: { volver: '/reservas' } });
+      return;
+    }
+
     this.reservas = this.reservasService.obtenerReservas();
 
     const { nuevaReserva, ...resto } = history.state ?? {};

@@ -1,0 +1,46 @@
+.login-fondo {
+  min-height: calc(100vh - 84px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--lr-gris-fondo);
+  padding: 2rem 1rem;
+}
+
+.login-tarjeta {
+  width: 100%;
+  max-width: 380px;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 12px 32px rgb(0 0 0 / 0.1);
+  padding: 2rem 1.75rem;
+  text-align: center;
+}
+
+.login-logo {
+  height: 56px;
+  width: auto;
+  margin-bottom: 1.25rem;
+}
+
+.login-tarjeta h1 {
+  text-align: left;
+}
+
+.login-tarjeta .form-label {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.login-tarjeta form {
+  text-align: left;
+}
+
+.login-tarjeta a {
+  color: var(--lr-azul);
+  text-decoration: none;
+}
+
+.login-tarjeta a:hover {
+  text-decoration: underline;
+}

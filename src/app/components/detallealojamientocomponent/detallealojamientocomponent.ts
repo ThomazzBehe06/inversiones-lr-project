@@ -6,6 +6,7 @@ import { Alojamiento, Resena } from '../../models/alojamiento';
 import { AlojamientoService } from '../../services/alojamiento.service';
 import { Reservas } from '../../services/reservas';
 import { MonedaService } from '../../services/moneda.service';
+import { SesionService } from '../../services/sesion.service';
 
 const TARIFA_SERVICIO = 0.1;
 const IMAGEN_RESPALDO = 'assets/images/sin-imagen.svg';
@@ -35,6 +36,7 @@ export class Detallealojamientocomponent {
   private reservasService = inject(Reservas);
   private router = inject(Router);
   monedaService = inject(MonedaService);
+  sesionService = inject(SesionService);
 
   private datos = toSignal(
     inject(ActivatedRoute).paramMap.pipe(
@@ -145,7 +147,13 @@ export class Detallealojamientocomponent {
     const cotizacion = this.cotizacion();
     if (!alojamiento || !cotizacion || this.errorNombre() || this.errorCorreo()) return;
 
+    if (!this.sesionService.logueado()) {
+      void this.router.navigate(['/login'], { queryParams: { volver: this.router.url } });
+      return;
+    }
+
     const idReserva = this.generarId();
+
     this.reservasService.guardarReserva({
       id: idReserva,
       alojamientoId: alojamiento.id,

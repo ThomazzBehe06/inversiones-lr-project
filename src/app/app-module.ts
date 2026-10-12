@@ -13,6 +13,7 @@ import { Alojamientoscomponent } from './components/alojamientoscomponent/alojam
 import { Detallealojamientocomponent } from './components/detallealojamientocomponent/detallealojamientocomponent';
 import { Reservascomponent } from './components/reservascomponent/reservascomponent';
 import { Mapaubicacioncomponent } from './components/mapaubicacioncomponent/mapaubicacioncomponent';
+import { Logincomponent } from './components/logincomponent/logincomponent';
 
 registerLocaleData(localeEsCo);
 
@@ -26,6 +27,7 @@ registerLocaleData(localeEsCo);
     Detallealojamientocomponent,
     Reservascomponent,
     Mapaubicacioncomponent,
+    Logincomponent,
   ],
 
   imports: [BrowserModule, AppRoutingModule, FormsModule],
