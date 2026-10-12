@@ -1,0 +1,51 @@
+@if (tieneCoordenadas()) {
+  <section class="card shadow-sm mb-4 tarjeta-clima">
+    <div class="card-body">
+      <h2 class="h4 mb-3">Clima en {{ ciudad }}</h2>
+
+      @if (cargando()) {
+        <!-- Cargando -->
+        <div class="d-flex align-items-center gap-2 text-muted">
+          <div class="spinner-border spinner-border-sm text-primary" role="status"></div>
+          Consultando el clima...
+        </div>
+      } @else if (error()) {
+        <!-- Error -->
+        <p class="text-muted mb-0">
+          <i class="bi bi-cloud-slash me-1"></i>
+          No pudimos consultar el clima en este momento.
+        </p>
+      } @else if (clima(); as c) {
+        <!-- Clima actual -->
+        <div class="d-flex flex-wrap align-items-center gap-3">
+          <i class="bi {{ c.icono }} icono-actual"></i>
+          <div>
+            <div class="temperatura">{{ c.temperatura }}°C</div>
+            <div class="text-muted">{{ c.descripcion }}</div>
+          </div>
+          <ul class="detalles ms-md-auto">
+            <li><i class="bi bi-thermometer-half"></i> Sensación {{ c.sensacion }}°C</li>
+            <li><i class="bi bi-droplet"></i> Humedad {{ c.humedad }} %</li>
+            <li><i class="bi bi-wind"></i> Viento {{ c.viento }} km/h</li>
+          </ul>
+        </div>
+
+        <!-- Pronostico -->
+        <div class="row row-cols-3 g-2 mt-3">
+          @for (dia of c.dias; track dia.fecha) {
+            <div>
+              <div class="dia">
+                <div class="fw-semibold">{{ dia.nombre }}</div>
+                <i class="bi {{ dia.icono }} icono-dia"></i>
+                <div>{{ dia.maxima }}° / <span class="text-muted">{{ dia.minima }}°</span></div>
+                <small class="text-muted"><i class="bi bi-umbrella"></i> {{ dia.lluvia }} %</small>
+              </div>
+            </div>
+          }
+        </div>
+
+        <small class="d-block text-muted mt-3 fuente">Datos: Open-Meteo</small>
+      }
+    </div>
+  </section>
+}

@@ -5,6 +5,7 @@ import { Alojamientoscomponent } from './components/alojamientoscomponent/alojam
 import { Detallealojamientocomponent } from './components/detallealojamientocomponent/detallealojamientocomponent';
 import { Reservascomponent } from './components/reservascomponent/reservascomponent';
 import { Logincomponent } from './components/logincomponent/logincomponent';
+import { Noencontradocomponent } from './components/noencontradocomponent/noencontradocomponent';
 
 const routes: Routes = [
   { path: '', redirectTo: 'inicio', pathMatch: 'full' },
@@ -13,6 +14,9 @@ const routes: Routes = [
   { path: 'alojamientos', component: Alojamientoscomponent },
   { path: 'reservas', component: Reservascomponent },
   { path: 'login', component: Logincomponent },
+
+  // Ruta que no existe
+  { path: '**', component: Noencontradocomponent },
 ];
 
 @NgModule({

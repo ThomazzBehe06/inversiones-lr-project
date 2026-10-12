@@ -13,6 +13,8 @@ import { Alojamientoscomponent } from './components/alojamientoscomponent/alojam
 import { Detallealojamientocomponent } from './components/detallealojamientocomponent/detallealojamientocomponent';
 import { Reservascomponent } from './components/reservascomponent/reservascomponent';
 import { Logincomponent } from './components/logincomponent/logincomponent';
+import { Climacomponent } from './components/climacomponent/climacomponent';
+import { Noencontradocomponent } from './components/noencontradocomponent/noencontradocomponent';
 
 registerLocaleData(localeEsCo);
 
@@ -26,6 +28,8 @@ registerLocaleData(localeEsCo);
     Detallealojamientocomponent,
     Reservascomponent,
     Logincomponent,
+    Climacomponent,
+    Noencontradocomponent,
   ],
 
   imports: [BrowserModule, AppRoutingModule, FormsModule],

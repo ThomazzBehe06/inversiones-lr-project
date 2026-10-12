@@ -42,6 +42,8 @@
           <p class="text-muted lh-lg">{{ a.descripcion }}</p>
         </section>
 
+        <app-climacomponent [latitud]="a.latitud" [longitud]="a.longitud" [ciudad]="a.ciudad"></app-climacomponent>
+
         <section class="row row-cols-2 row-cols-md-4 g-3 mb-4 text-center">
           <div><div class="dato-caja"><i class="bi bi-people fs-4"></i><br>{{ a.capacidad }} huéspedes</div></div>
           <div><div class="dato-caja"><i class="bi bi-door-open fs-4"></i><br>{{ a.habitaciones }} habitaciones</div></div>

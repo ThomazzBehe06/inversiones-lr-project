@@ -1,0 +1,43 @@
+/* Icono grande */
+.icono-actual {
+  font-size: 3rem;
+  line-height: 1;
+  color: var(--lr-turquesa);
+}
+
+/* Temperatura */
+.temperatura {
+  font-family: var(--fuente-titulos);
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+/* Sensacion, humedad y viento */
+.detalles {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.9rem;
+  color: var(--lr-texto-suave);
+}
+
+/* Dias del pronostico */
+.dia {
+  padding: 0.6rem 0.25rem;
+  border-radius: 10px;
+  background-color: var(--lr-gris-fondo);
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.icono-dia {
+  display: block;
+  margin: 0.2rem 0;
+  font-size: 1.5rem;
+  color: var(--lr-azul);
+}
+
+.fuente {
+  font-size: 0.75rem;
+}
